@@ -1,0 +1,45 @@
+@port = 8000
+@baseUrl = http://127.0.0.1:{{port}}
+
+### * Get All 
+GET {{baseUrl}}/user
+
+### * LOGIN 
+POST {{baseUrl}}/user/login
+Content-Type: application/json
+
+{
+  "email": "teacher@email.com",
+  "password": "123"
+}
+
+### * CREATE with role
+POST {{baseUrl}}/user
+Content-Type: application/json
+
+{
+  "username": "sample_username",
+  "first_name": "ADMIN",
+  "middle_name": "ADMIN",
+  "last_name": "ADMIN",
+  "email": "admin@email.com",
+  "password": "123",
+  "role": "admin"
+}
+
+### * UPDATE (u cant update without the whole required fields!)
+PUT {{baseUrl}}/user/2
+Content-Type: application/json
+
+{
+  "username": "sample_username",
+  "first_name": "Jiro",
+  "middle_name": "G",
+  "last_name": "Mendador",
+  "email": "teacher@email.com",
+  "password": "123",
+  "role": "teacher"
+}
+
+### * DELETE
+DELETE {{baseUrl}}/user/1

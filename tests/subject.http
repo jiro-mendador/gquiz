@@ -1,0 +1,28 @@
+@port = 8000
+@baseUrl = http://127.0.0.1:{{port}}
+
+### * Get All 
+GET {{baseUrl}}/subject
+
+### * CREATE 
+POST {{baseUrl}}/subject
+Content-Type: application/json
+
+{
+  "subject_code": "CCS-101",
+  "description": "Computer Programming 1",
+  "teacher": 1
+}
+
+### * UPDATE (u cant update without the whole required fields!)
+PUT {{baseUrl}}/subject/1
+Content-Type: application/json
+
+{
+  "subject_code": "CCS-102",
+  "description": "Computer Programming 2",
+  "teacher": 1
+}
+
+### * DELETE
+DELETE {{baseUrl}}/subject/3
