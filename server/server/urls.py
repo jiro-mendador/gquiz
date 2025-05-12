@@ -32,5 +32,9 @@ urlpatterns = [
     re_path(r'^year-section/([0-9]+)$',views.year_section),
     re_path(r'^subject$',views.subject), 
     re_path(r'^subject/([0-9]+)$',views.subject),
+    re_path(r'^student-course-year-section-subject$',views.studentCourseYearSectionSubject), 
+    re_path(r'^student-course-year-section-subject/([0-9]+)$',views.studentCourseYearSectionSubject),
+    re_path(r'^quiz$',views.quiz), 
+    re_path(r'^quiz/([0-9]+)$',views.quiz),
     path('admin/', admin.site.urls),
 ]

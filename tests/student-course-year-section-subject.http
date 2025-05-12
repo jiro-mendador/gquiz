@@ -1,0 +1,30 @@
+@port = 8000
+@baseUrl = http://127.0.0.1:{{port}}
+
+### * Get All 
+GET {{baseUrl}}/student-course-year-section-subject?section=A&year=2
+
+### * CREATE 
+POST {{baseUrl}}/student-course-year-section-subject
+Content-Type: application/json
+
+{
+  "course": 1,
+  "year_section": 4,
+  "subject": 3,
+  "student": 3
+}
+
+### * UPDATE (u cant update without the whole required fields!)
+PUT {{baseUrl}}/student-course-year-section-subject/1
+Content-Type: application/json
+
+{
+  "course": 1,
+  "year_section": 4,
+  "subject": 3,
+  "student": 3
+}
+
+### * DELETE
+DELETE {{baseUrl}}/student-course-year-section-subject/1

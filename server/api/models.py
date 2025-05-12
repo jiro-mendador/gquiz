@@ -77,9 +77,13 @@ class Quiz(models.Model):
     time_limit_minutes = models.PositiveIntegerField()
     quiz_date = models.DateTimeField(blank=True)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150, unique=True, default="")
 
     def __str__(self):
         return f"Quiz for {self.subject} on {self.created_at}"
+      
+    class Meta:
+        unique_together = ('title', 'quiz_date', 'subject')
 
 class QuizQuestion(models.Model):
     QUESTION_TYPE_CHOICES = (

@@ -1,0 +1,30 @@
+@port = 8000
+@baseUrl = http://127.0.0.1:{{port}}
+
+### * Get All 
+GET {{baseUrl}}/quiz
+
+### * CREATE 
+POST {{baseUrl}}/quiz
+Content-Type: application/json
+
+{
+  "title": "QUIZ TITLE HERE",
+  "time_limit_minutes": 60,
+  "quiz_date": "2025-05-13",
+  "subject": 3
+}
+
+### * UPDATE (u cant update without the whole required fields!)
+PUT {{baseUrl}}/quiz/1
+Content-Type: application/json
+
+{
+  "title": "QUIZ TITLE HERE",
+  "time_limit_minutes": 60,
+  "quiz_date": "2025-05-13",
+  "subject": 3
+}
+
+### * DELETE
+DELETE {{baseUrl}}/quiz/1

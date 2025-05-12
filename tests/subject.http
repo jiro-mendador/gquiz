@@ -11,7 +11,7 @@ Content-Type: application/json
 {
   "subject_code": "CCS-101",
   "description": "Computer Programming 1",
-  "teacher": 1
+  "teacher": 2
 }
 
 ### * UPDATE (u cant update without the whole required fields!)

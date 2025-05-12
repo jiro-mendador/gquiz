@@ -18,13 +18,13 @@ POST {{baseUrl}}/user
 Content-Type: application/json
 
 {
-  "username": "sample_username",
-  "first_name": "ADMIN",
-  "middle_name": "ADMIN",
-  "last_name": "ADMIN",
-  "email": "admin@email.com",
+  "username": "sample_student",
+  "first_name": "student",
+  "middle_name": "student",
+  "last_name": "student",
+  "email": "student@email.com",
   "password": "123",
-  "role": "admin"
+  "role": "student"
 }
 
 ### * UPDATE (u cant update without the whole required fields!)
