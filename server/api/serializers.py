@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from api.models import User, Course, YearSection, Subject, StudentCourseYearSectionSubject, Quiz
+from api.models import User, Course, YearSection, Subject, \
+  StudentCourseYearSectionSubject, Quiz, QuizQuestion, QuizChoice, QuizAttempt
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,4 +49,19 @@ class StudentCourseYearSectionSubjectSerializer(serializers.ModelSerializer):
 class QuizSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
+        fields = '__all__'
+        
+class QuizQuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuizQuestion
+        fields = '__all__'
+
+class QuizChoiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuizChoice
+        fields = '__all__'
+        
+class QuizAttemptSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuizAttempt
         fields = '__all__'

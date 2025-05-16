@@ -1,0 +1,31 @@
+@port = 8000
+@baseUrl = http://127.0.0.1:{{port}}
+
+### * Get All with filter
+GET {{baseUrl}}/quiz-question?quiz=5
+
+### * Get All 
+GET {{baseUrl}}/quiz-question
+
+### * CREATE 
+POST {{baseUrl}}/quiz-question
+Content-Type: application/json
+
+{
+  "quiz": 5,
+  "question": "Is it false?",
+  "question_type": "true_false"
+}
+
+### * UPDATE (u cant update without the whole required fields!)
+PUT {{baseUrl}}/quiz-question/2
+Content-Type: application/json
+
+{
+  "quiz": 3,
+  "question": "Which",
+  "question_type": "multiple_choice"
+}
+
+### * DELETE
+DELETE {{baseUrl}}/quiz-question/1

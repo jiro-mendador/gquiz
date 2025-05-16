@@ -9,22 +9,22 @@ POST {{baseUrl}}/quiz
 Content-Type: application/json
 
 {
-  "title": "QUIZ TITLE HERE",
+  "title": "Data Structures",
   "time_limit_minutes": 60,
-  "quiz_date": "2025-05-13",
+  "quiz_date": "2025-05-14",
   "subject": 3
 }
 
 ### * UPDATE (u cant update without the whole required fields!)
-PUT {{baseUrl}}/quiz/1
+PUT {{baseUrl}}/quiz/3
 Content-Type: application/json
 
 {
-  "title": "QUIZ TITLE HERE",
+  "title": "Programming",
   "time_limit_minutes": 60,
-  "quiz_date": "2025-05-13",
+  "quiz_date": "2025-05-14",
   "subject": 3
 }
 
 ### * DELETE
-DELETE {{baseUrl}}/quiz/1
+DELETE {{baseUrl}}/quiz/4

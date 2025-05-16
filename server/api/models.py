@@ -93,7 +93,7 @@ class QuizQuestion(models.Model):
         ('essay', 'Essay'),
     )
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    question = models.TextField()
+    question = models.TextField(unique=True)
     question_type = models.CharField(max_length=20, choices=QUESTION_TYPE_CHOICES)
 
     def __str__(self):
@@ -102,16 +102,19 @@ class QuizQuestion(models.Model):
 class QuizChoice(models.Model):
     question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE)
     choice = models.TextField()
-    is_correct = models.BooleanField()
+    is_correct = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Choice for Question {self.question.id}"
+    
+    class Meta:
+        unique_together = ('question', 'choice')
 
 
 class QuizAttempt(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE)
-    student = models.ForeignKey(Course, limit_choices_to={'role': 'student'}, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, limit_choices_to={'role': 'student'}, on_delete=models.CASCADE)
     answer = models.ForeignKey(QuizChoice, null=True, blank=True, on_delete=models.SET_NULL)
     attempt_date = models.DateTimeField(auto_now_add=True)
 

@@ -2,7 +2,7 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All 
-GET {{baseUrl}}/student-course-year-section-subject?section=A&year=2
+GET {{baseUrl}}/student-course-year-section-subject
 
 ### * CREATE 
 POST {{baseUrl}}/student-course-year-section-subject
