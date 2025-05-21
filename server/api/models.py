@@ -10,7 +10,7 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
     middle_name = models.CharField(max_length=50, blank=True)
-    email = models.EmailField(max_length=50, blank=True)
+    email = models.EmailField(max_length=50, blank=True, unique=True)
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
 
     # Override groups and user_permissions to set unique related_name

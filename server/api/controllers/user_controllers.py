@@ -36,7 +36,7 @@ def post(request):
   serializer = UserSerializer(data=request.data)
   if serializer.is_valid():
       serializer.save()
-      return Response({"success": True, "message": "Added successfully", "data": serializer.data}, status=status.HTTP_201_CREATED)
+      return Response({"success": True, "message": "Information Registered Successfully", "data": serializer.data}, status=status.HTTP_201_CREATED)
   return Response({"success": False, "message": "Validation failed", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 def put(request, id=None):

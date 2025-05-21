@@ -2,7 +2,7 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All with filter
-GET {{baseUrl}}/quiz-question?quiz=5
+GET {{baseUrl}}/quiz-question?quiz=3
 
 ### * Get All 
 GET {{baseUrl}}/quiz-question

@@ -1,0 +1,125 @@
+/* ! DEFAULTS */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+:root {
+  /* colors */
+  --darkest: #000000ff;
+
+  --light: #f3f5f7;
+  --lightest: #f3f4f4ff;
+
+  --gray: #cdcddbff;
+
+  --orange-acc: #f9321aff;
+  --light-orange-acc: rgb(233, 174, 167);
+  --dark-red-acc: #721c24;
+
+  --light-violet-acc: #eeeefc;
+  --violet-acc2: #5365d0ff;
+  --violet-acc1: #7047fdff;
+
+  --dark-green-acc: #224c3a;
+  --green-acc: #68c19fff;
+  --light-green-acc: rgb(178, 224, 206);
+
+  /* font-sizes */
+  --title: 1.75em;
+  --sub-title: 1.5em;
+  --details: 0.8em;
+  --sub-details: 0.6em;
+
+  /* border-radius */
+  --subtle: 10px;
+  --semi: 15px;
+  --hard: 30px;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+/* ! END OF DEFAULTS */
+
+/* * LOGIN */
+main {
+  flex: 1;
+
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem;
+}
+
+.login-signup-div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2rem;
+
+  /* Remove border or make it transparent */
+  border: none;
+
+  /* Shadow instead of border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* soft shadow */
+
+  padding: 3rem;
+  border-radius: var(--subtle);
+  width: 100%;
+  max-width: 35rem;
+}
+
+.login-signup-div > p {
+  font-size: var(--sub-title);
+  font-weight: 700;
+}
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.25rem;
+}
+
+form > div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+}
+
+form > div > input {
+  padding: 0.75rem 1rem;
+  border-radius: var(--subtle);
+  border: none;
+  color: var(--night);
+  background-color: var(--light);
+}
+
+form > input[type="submit"] {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--subtle);
+  border: none;
+  background-color: var(--violet-acc1);
+  color: white;
+}
+
+/* * CONTROL ON DISPLAY */
+#signup-div {
+  display: none;
+}

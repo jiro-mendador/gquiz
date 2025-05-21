@@ -1,0 +1,44 @@
+/* * HEADER */
+header {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+
+  /* Remove solid border */
+  border-bottom: none;
+
+  /* Add subtle bottom shadow */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 9998;
+}
+
+.logo-div {
+  border: 2px solid var(--violet-acc1);
+  padding: 1rem;
+  border-radius: var(--subtle);
+}
+
+.logo-div > p {
+  color: var(--violet-acc1);
+  font-size: var(--details);
+  font-weight: 900;
+  letter-spacing: 0.5rem;
+}
+
+.header-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+
+.header-buttons > button {
+  padding: 0.75rem 1rem;
+  border-radius: var(--subtle);
+  border: none;
+  color: var(--violet-acc1);
+  font-size: var(--details);
+  background-color: var(--light-violet-acc);
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WELCOME TO GQUIZ</title>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="../styles/toast.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo-div">
+        <p>GQUIZ</p>
+      </div>
+      <div class="header-buttons">
+        <button class="log-in-button" id="header-login-button">LOG IN</button>
+        <button class="sign-up-button" id="header-signup-button">
+          SIGN UP
+        </button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- * LOGIN -->
+      <div class="login-signup-div" id="login-div">
+        <p>Login</p>
+        <form id="loginForm">
+          <div>
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" required />
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required />
+          </div>
+          <input type="submit" value="Log In" />
+        </form>
+      </div>
+
+      <!-- * SIGN UP -->
+      <div class="login-signup-div" id="signup-div">
+        <p>Sign Up</p>
+        <form id="signupForm">
+          <div>
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" id="firstName" required />
+          </div>
+          <div>
+            <label for="middleName">Middle Name</label>
+            <input type="text" name="middleName" id="middleName" required />
+          </div>
+          <div>
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName" required />
+          </div>
+          <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required />
+          </div>
+          <div>
+            <label for="email-reg">Email</label>
+            <input type="text" name="email-reg" id="email-reg" required />
+          </div>
+          <div>
+            <label for="password-reg">Password</label>
+            <input
+              type="password"
+              name="password-reg"
+              id="password-reg"
+              required
+            />
+          </div>
+          <input type="submit" value="Sign Up" />
+        </form>
+      </div>
+    </main>
+    <div id="toast-container"></div>
+    <script src="../scripts/index.js" type="module"></script>
+  </body>
+</html>

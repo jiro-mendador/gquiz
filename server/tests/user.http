@@ -18,11 +18,11 @@ POST {{baseUrl}}/user
 Content-Type: application/json
 
 {
-  "username": "sample_student",
+  "username": "sample_student1",
   "first_name": "student",
   "middle_name": "student",
   "last_name": "student",
-  "email": "student@email.com",
+  "email": "teacher@email.com",
   "password": "123",
   "role": "student"
 }
