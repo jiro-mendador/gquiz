@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+# ! MIGRATE QUIZ_DATE TOMORROW!!!
+
 class User(AbstractUser):
     ROLE_CHOICES = (
         ('student', 'Student'),
@@ -74,16 +76,18 @@ class StudentCourseYearSectionSubject(models.Model):
 
 class Quiz(models.Model):
     # time_limit_minutes = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(180)])
-    time_limit_minutes = models.PositiveIntegerField()
-    quiz_date = models.DateTimeField(blank=True)
+    # time_limit_minutes = models.PositiveIntegerField()
+    quiz_start_date = models.DateTimeField(blank=True, default="")
+    quiz_end_date = models.DateTimeField(blank=True, default="")
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, unique=True, default="")
+    instructions = models.TextField(default="")
 
     def __str__(self):
         return f"Quiz for {self.subject} on {self.created_at}"
       
     class Meta:
-        unique_together = ('title', 'quiz_date', 'subject')
+        unique_together = ('title', 'quiz_start_date', 'quiz_end_date', 'subject')
 
 class QuizQuestion(models.Model):
     QUESTION_TYPE_CHOICES = (
@@ -110,8 +114,16 @@ class QuizChoice(models.Model):
     class Meta:
         unique_together = ('question', 'choice')
 
+class QuizSubmission(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, limit_choices_to={'role': 'student'}, on_delete=models.CASCADE)
+    submitted_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.student.username}'s submission for {self.quiz.title}"
 
 class QuizAttempt(models.Model):
+    submission = models.ForeignKey(QuizSubmission, on_delete=models.CASCADE, related_name="attempts", default="")
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE)
     student = models.ForeignKey(User, limit_choices_to={'role': 'student'}, on_delete=models.CASCADE)

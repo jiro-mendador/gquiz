@@ -40,7 +40,9 @@ urlpatterns = [
     re_path(r'^quiz-question/([0-9]+)$',views.quizQuestion),
     re_path(r'^quiz-question-choice$',views.quizQuestionChoice), 
     re_path(r'^quiz-question-choice/([0-9]+)$',views.quizQuestionChoice),
-     re_path(r'^quiz-attempt$',views.quizAttempt), 
+    re_path(r'^quiz-attempt$',views.quizAttempt), 
     re_path(r'^quiz-attempt/([0-9]+)$',views.quizAttempt),
+    re_path(r'^quiz-submission$',views.quizSubmission), 
+    re_path(r'^quiz-submission/([0-9]+)$',views.quizSubmission),
     path('admin/', admin.site.urls),
 ]

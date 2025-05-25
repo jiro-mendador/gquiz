@@ -8,6 +8,7 @@ from .routes.quiz_routes import quizApi
 from .routes.quiz_question_routes import quizQuestionApi
 from .routes.quiz_question_choice_routes import quizQuestionChoiceApi 
 from .routes.quiz_attempt_routes import quizAttemptApi
+from .routes.quiz_submission_routes import quizSubmissionApi
 # from django.views.decorators.csrf import csrf_exempt
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
@@ -59,3 +60,8 @@ def quizQuestionChoice(request, id=None):
 # @csrf_exempt
 def quizAttempt(request, id=None):
   return quizAttemptApi(request, id)
+
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+# @csrf_exempt
+def quizSubmission(request, id=None):
+  return quizSubmissionApi(request, id)

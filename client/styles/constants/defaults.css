@@ -15,21 +15,24 @@
   --light: #f3f5f7;
   --lighter: #f6f5fa;
   --lightest: #f3f4f4ff;
+  --light2: #fcfbfc;
 
   --gray: #cdcddbff;
+  --light-gray: #e0dffe;
   --dark-gray: rgb(146, 146, 155);
 
   --orange-acc: #f9321aff;
   --light-orange-acc: rgb(233, 174, 167);
-  --dark-red-acc: #721c24;
 
   --light-violet-acc: #eeeefc;
   --violet-acc2: #5365d0ff;
   --violet-acc1: #7047fdff;
 
-  --dark-green-acc: #224c3a;
-  --green-acc: #68c19fff;
-  --light-green-acc: rgb(178, 224, 206);
+  --red-acc: #b9545c;
+  --light-red-acc: #fadcdd;
+
+  --green-acc: #59c189;
+  --light-green-acc: #f2fcf6;
 
   /* font-sizes */
   --title: 1.75em;

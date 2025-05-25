@@ -9,10 +9,11 @@ POST {{baseUrl}}/quiz-attempt
 Content-Type: application/json
 
 {
-  "quiz": 3,
+  "submission": 2,
+  "quiz": 1,
   "question": 1,
-  "student": 3,
-  "answer": 5
+  "student": 1,
+  "answer": 1
 }
 
 ### * UPDATE (u cant update without the whole required fields!)
@@ -20,11 +21,12 @@ PUT {{baseUrl}}/quiz-attempt/2
 Content-Type: application/json
 
 {
-  "quiz": 3,
+  "submission": 2,
+  "quiz": 1,
   "question": 1,
-  "student": 3,
-  "answer": 3
+  "student": 1,
+  "answer": 2
 }
 
 ### * DELETE
-DELETE {{baseUrl}}/quiz-attempt/4
+DELETE {{baseUrl}}/quiz-attempt/1

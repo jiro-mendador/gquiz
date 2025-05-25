@@ -22,11 +22,6 @@ window.addEventListener("DOMContentLoaded", () => {
   takeQuiz1Btn.addEventListener("click", openQuiz);
 
   function openQuiz() {
-    showToast(
-      "After clicking 'proceed button' the quiz timer will start immediately. Are you sure you want to continue?",
-      () => {
-        navigate("./student-quiz.html");
-      }
-    );
+    showToast("This quiz is not available yet for answering!");
   }
 });

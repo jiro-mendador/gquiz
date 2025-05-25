@@ -1,0 +1,51 @@
+/* * SIDE NAV */
+nav {
+  min-width: 15rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  background-color: white;
+
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+}
+
+nav > div {
+  padding: 0.75rem 1rem;
+  border-radius: var(--subtle);
+
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+nav > div.selected {
+  color: var(--violet-acc1);
+  background-color: var(--light-violet-acc);
+  font-weight: 600;
+}
+
+nav > div:hover:not(.selected) {
+  background-color: var(--light);
+}
+
+@media screen and (max-width: 700px) {
+  nav {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    flex-flow: row nowrap;
+    border-radius: var(--subtle);
+    z-index: 9997;
+
+    padding: 0.5rem;
+    justify-content: center;
+  }
+
+  nav > div > p {
+    display: none;
+  }
+}

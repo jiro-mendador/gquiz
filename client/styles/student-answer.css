@@ -23,15 +23,16 @@
 
   --orange-acc: #f9321aff;
   --light-orange-acc: rgb(233, 174, 167);
-  --dark-red-acc: #721c24;
 
   --light-violet-acc: #eeeefc;
   --violet-acc2: #5365d0ff;
   --violet-acc1: #7047fdff;
 
-  --dark-green-acc: #224c3a;
-  --green-acc: #68c19fff;
-  --light-green-acc: rgb(178, 224, 206);
+  --red-acc: #b9545c;
+  --light-red-acc: #fadcdd;
+
+  --green-acc: #59c189;
+  --light-green-acc: #f2fcf6;
 
   /* font-sizes */
   --title: 1.75em;
@@ -95,6 +96,9 @@ main > .quiz-header-instructions-container {
   background-color: white;
 
   padding: 1rem;
+  /* * ADDED */
+  max-width: 1280px;
+  margin-inline: auto;
 }
 
 .quiz-name-subject {
@@ -250,6 +254,10 @@ main > .quiz-header-instructions-container {
   .quiz-name-subject {
     width: 100%;
   }
+
+  .min-max-quiz-header-big {
+    display: none;
+  }
 }
 
 /* * QUIZ QUESTIONS CONTAINER */
@@ -260,6 +268,10 @@ main > .quiz-header-instructions-container {
   align-items: center;
   gap: 1rem;
   padding: 1rem;
+
+  /* * ADDED */
+  max-width: 1280px;
+  margin-inline: auto;
 }
 
 /* * INDIV QUIZ QUESTION */
@@ -318,50 +330,28 @@ main > .quiz-header-instructions-container {
   color: var(--dark-gray);
   font-weight: 600;
   font-size: var(--normal);
-  border: 2px solid transparent;
+  width: 100%;
 }
 
 .quiz-choices-container * {
   transition: all 0.3s ease-in;
 }
 
-.quiz-select-one-choice:hover:not(.selected) {
-  color: var(--violet-acc1);
-  border: 2px solid var(--violet-acc1);
-}
-
 .quiz-select-one-choice.selected {
-  border: 2px solid var(--violet-acc1);
-  color: var(--violet-acc1);
-  background-color: var(--light-violet-acc);
+  color: var(--darkest);
 }
 
 /* * ACTUAL INPUT ANSWER */
 .quiz-input-answer {
   padding: 1rem;
   border: none;
-  width: 100%;
   border-radius: var(--semi);
   font-weight: 600;
   font-size: var(--normal);
-  color: var(--violet-acc1);
-  border: 2px solid var(--violet-acc1);
-}
-
-.quiz-input-answer:focus {
-  outline: none;
-  box-shadow: 0 0 2px var(--violet-acc1);
-}
-
-.quiz-input-answer::placeholder {
-  color: var(--violet-acc1);
-  opacity: 0.25;
-}
-
-textarea.quiz-input-answer {
-  height: 20rem;
-  resize: none;
-  width: 100% !important;
+  color: var(--darkest);
+  width: 100%;
+  max-height: 20rem;
+  overflow: auto;
 }
 
 /* * QUIZ ACTION BUTTONS */
@@ -402,4 +392,71 @@ textarea.quiz-input-answer {
   justify-content: flex-end;
   background-color: var(--violet-acc1);
   color: white;
+}
+
+/* * TO MIN MAX QUIZ HEADER ON BIG SCREEN */
+.min-max-quiz-header-big {
+  position: absolute;
+  left: 50%;
+  bottom: -1rem;
+  transform: translateX(-50%);
+  background-color: var(--light-violet-acc);
+  padding: 0.5rem;
+  border-radius: var(--hard);
+  cursor: pointer;
+  color: var(--violet-acc1);
+}
+
+/* * ADDITIONALS FOR CORRECTIONS */
+.quiz-answer-mark-div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  border-radius: var(--semi);
+  background-color: white;
+}
+
+/* * SETS THE BG OF A DIV */
+.correct {
+  background-color: var(--light-green-acc);
+}
+
+.incorrect {
+  background-color: var(--light-red-acc);
+}
+
+/* * THE MARK ICONS */
+.correct span {
+  color: var(--green-acc);
+}
+
+.incorrect span {
+  color: var(--red-acc);
+}
+
+/* * IF INCORRECT, THIS DIV WILL BE DISPLAYED */
+.correct-answer-div {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+/* * THE SUB TITLE */
+.correct-answer-div > p:nth-of-type(1) {
+  font-weight: 600;
+  font-size: var(--details);
+}
+
+/* * THE ACTUAL CORRECT ANSWER */
+.correct-answer-div > p:nth-of-type(2) {
+  font-weight: 600;
+  font-size: var(--normal);
+  color: var(--green-acc);
+
+  padding: 1rem 0.5rem;
+  max-height: 20rem;
+  overflow: auto;
 }

@@ -10,9 +10,10 @@ Content-Type: application/json
 
 {
   "title": "Data Structures",
-  "time_limit_minutes": 60,
-  "quiz_date": "2025-05-14",
-  "subject": 3
+  "quiz_start_date": "2025-05-14 09:00:00",
+  "quiz_end_date": "2025-05-14 10:00:00",
+  "instructions": "Just answer it, are you stupid???",
+  "subject": 1
 }
 
 ### * UPDATE (u cant update without the whole required fields!)
@@ -21,8 +22,9 @@ Content-Type: application/json
 
 {
   "title": "Programming",
-  "time_limit_minutes": 60,
-  "quiz_date": "2025-05-14",
+  "quiz_start_date": "2025-05-14 09:00:00",
+  "quiz_end_date": "2025-05-14 10:00:00",
+  "instructions": "Just answer it, are you stupid???",
   "subject": 3
 }
 

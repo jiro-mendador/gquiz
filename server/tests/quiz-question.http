@@ -12,7 +12,7 @@ POST {{baseUrl}}/quiz-question
 Content-Type: application/json
 
 {
-  "quiz": 5,
+  "quiz": 1,
   "question": "Is it false?",
   "question_type": "true_false"
 }

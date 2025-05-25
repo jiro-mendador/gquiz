@@ -15,10 +15,8 @@
   --light: #f3f5f7;
   --lighter: #f6f5fa;
   --lightest: #f3f4f4ff;
-  --light2: #fcfbfc;
 
   --gray: #cdcddbff;
-  --light-gray: #e0dffe;
   --dark-gray: rgb(146, 146, 155);
 
   --orange-acc: #f9321aff;
@@ -241,28 +239,8 @@ nav > div:hover:not(.selected) {
   border: none;
 }
 
-/* * CONTAINER FOR STARTING SOON AND OTHER QUIZZES TODAY */
-.todays-starting-other-quizzes-container {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 3rem;
-}
-
-/* * DIVS THAT HOLD SOONEST AND OTHER QUIZZES TODAY */
-.todays-starting-other-quizzes-container > div {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1rem;
-}
-
-/* * SUB TITLE OF THE PAGE */
-.todays-starting-other-quizzes-container > div > p {
-  font-weight: 600;
-  font-size: var(--normal);
-}
-
 /* * QUIZZES CONTAINER */
-.quizzes-div {
+.upcoming-quizzes-div {
   display: flex;
   flex-flow: row wrap;
   gap: 2rem;
@@ -284,8 +262,7 @@ nav > div:hover:not(.selected) {
   min-width: 20rem;
 }
 
-.quiz *,
-.other-quiz * {
+.quiz * {
   transition: all 0.3s ease-in;
 }
 
@@ -377,7 +354,7 @@ nav > div:hover:not(.selected) {
 }
 
 @media (max-width: 1025px) {
-  .quizzes-div {
+  .upcoming-quizzes-div {
     justify-content: center;
   }
 }
@@ -386,102 +363,4 @@ nav > div:hover:not(.selected) {
   .quiz {
     padding: 1rem;
   }
-}
-
-/* * OTHER QUIZZES CONTAINER */
-.other-quizzes {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1rem;
-}
-
-/* * INDIV OTHER QUIZ */
-.other-quiz {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  max-width: 94rem;
-
-  border-radius: var(--semi);
-  border-left: 6px solid var(--violet-acc1);
-
-  padding: 1rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.other-quiz > span {
-  color: var(--violet-acc1);
-  background-color: var(--light-violet-acc);
-  padding: 1rem;
-  border-radius: var(--hard);
-}
-
-/* * OTHER QUIZ NAME DATE TIME LIMIT */
-.other-quiz > div {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  gap: 0.2rem;
-}
-
-/* * OTHER QUIZ NAME*/
-.other-quiz > div > p:nth-of-type(1) {
-  font-weight: 600;
-  font-size: var(--normal);
-  max-height: 5rem;
-  overflow: auto;
-}
-
-/* * OTHER QUIZ DATE*/
-.other-quiz > div > p:nth-of-type(2) {
-  font-weight: 600;
-  font-size: var(--details);
-  color: var(--dark-gray);
-}
-
-/* * OTHER QUIZ TIME LIMIT */
-.other-quiz > div > p:nth-of-type(3) {
-  font-weight: 600;
-  font-size: var(--details);
-  color: var(--violet-acc1);
-}
-
-/* * OTHER TAKE QUIZ BUTTON */
-.other-take-quiz-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-left: auto;
-  border-radius: var(--subtle);
-  padding: 0.75rem 1rem;
-  border: none;
-  color: var(--violet-acc1);
-  background-color: var(--light-violet-acc);
-  font-size: var(--details);
-  font-weight: 600;
-}
-
-.other-quiz:hover {
-  border-left: 6px solid transparent;
-}
-
-/* * On quiz hover, change icon background */
-.other-quiz:hover span {
-  background-color: var(--darkest);
-  color: white;
-}
-
-/* * On quiz hover, change the date text */
-.other-quiz:hover > div > p:nth-of-type(3) {
-  color: var(--darkest);
-}
-
-/* * On quiz hover, change button background */
-.other-quiz:hover .other-take-quiz-button {
-  background-color: var(--darkest);
-  color: white;
 }

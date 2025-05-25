@@ -2,25 +2,25 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All 
-GET {{baseUrl}}/year-section?section=A&year=2
+GET {{baseUrl}}/quiz-submission
 
 ### * CREATE 
-POST {{baseUrl}}/year-section
+POST {{baseUrl}}/quiz-submission
 Content-Type: application/json
 
 {
-  "year": 1,
-  "section": "A"
+  "quiz": 1,
+  "student": 1
 }
 
 ### * UPDATE (u cant update without the whole required fields!)
-PUT {{baseUrl}}/year-section/1
+PUT {{baseUrl}}/quiz-submission/3
 Content-Type: application/json
 
 {
-  "year": 1,
-  "section": "B"
+  "quiz": 1,
+  "student": 1
 }
 
 ### * DELETE
-DELETE {{baseUrl}}/year-section/1
+DELETE {{baseUrl}}/quiz-submission/4
