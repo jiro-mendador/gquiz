@@ -13,7 +13,6 @@ window.addEventListener("DOMContentLoaded", () => {
   let minMaxHeaderButtonBig = document.getElementById("minMaxHeaderButtonBig");
 
   let quizHeader = document.getElementById("quizHeader");
-
   let isQuizHeaderOpen = false;
 
   minMaxHeaderButton.addEventListener("click", openQuizHeaderOnSmallScreen);
@@ -35,7 +34,7 @@ window.addEventListener("DOMContentLoaded", () => {
     applyQuizQuestionMargin();
   }
 
-  function checkPageMaximumWidth(i = null) {
+  function checkPageMaximumWidth() {
     const maxWidth = window.innerWidth;
     if (maxWidth >= 601) {
       quizHeader.style.display = "flex";

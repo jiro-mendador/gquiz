@@ -1,0 +1,257 @@
+/* ! DEFAULTS */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+:root {
+  /* colors */
+  --darkest: #000000ff;
+
+  --light: #f3f5f7;
+  --lighter: #f6f5fa;
+  --lightest: #f3f4f4ff;
+  --light2: #fcfbfc;
+
+  --gray: #cdcddbff;
+  --light-gray: #e0dffe;
+  --dark-gray: rgb(146, 146, 155);
+
+  --orange-acc: #f9321aff;
+  --light-orange-acc: rgb(233, 174, 167);
+
+  --light-violet-acc: #eeeefc;
+  --violet-acc2: #5365d0ff;
+  --violet-acc1: #7047fdff;
+
+  --red-acc: #b9545c;
+  --light-red-acc: #fadcdd;
+
+  --green-acc: #59c189;
+  --light-green-acc: #f2fcf6;
+
+  /* font-sizes */
+  --title: 1.75em;
+  --sub-title: 1.5em;
+  --normal: 1.2em;
+  --details: 0.8em;
+  --sub-details: 0.6em;
+
+  /* border-radius */
+  --subtle: 10px;
+  --semi: 15px;
+  --hard: 30px;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  /* * THIS DIVIDES THE HEADER AND THE MAIN */
+  display: flex;
+  flex-flow: column nowrap;
+}
+/* ! END OF DEFAULTS */
+
+main {
+  flex: 1;
+
+  display: flex;
+  flex-flow: col nowrap;
+  gap: 2.5rem;
+
+  overflow: hidden;
+}
+
+/* * MAIN SECTION */
+.main-div-section {
+  padding: 2rem;
+
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 3rem;
+  width: 100%;
+
+  overflow-y: auto;
+}
+
+/* * page title */
+.page-title {
+  font-weight: 700;
+  font-size: var(--title);
+}
+
+/* * CONTAINER FOR BOX AND FULL NAME */
+.user-initial-fullname-div {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+
+/* * NAME BOX */
+.user-initial-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--light-violet-acc);
+  color: var(--violet-acc1);
+  padding: 3rem;
+  border-radius: var(--semi);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 810px) {
+  .user-initial-div {
+    flex: 1;
+  }
+}
+
+/* * INITIAL BOX */
+.user-initial-div > p {
+  font-weight: 900;
+  font-size: var(--title);
+}
+
+/* * FULL NAME AND OTHER USER INFO DIV */
+.fullname-other-info {
+  flex: 1;
+
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 1280px;
+  border-radius: var(--semi);
+  padding: 1rem 2rem;
+  background-color: var(--light2);
+  min-width: 20rem;
+}
+
+/* * FULL NAME AND EMAIL DIV */
+.fullname-email-div {
+  display: flex;
+  flex-flow: column nowrap;
+  font-weight: 600;
+}
+
+/* * NAME */
+.fullname-email-div > p:nth-of-type(1) {
+  font-size: var(--sub-title);
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* * ROLE */
+.fullname-email-div > p:nth-of-type(1) > span {
+  font-size: 0.6rem;
+  padding: 0.3rem 0.8rem;
+  background-color: var(--green-acc);
+  border-radius: var(--hard);
+  color: var(--light-green-acc);
+}
+
+/* * EMAIL */
+.fullname-email-div > p:nth-of-type(2) {
+  font-size: var(--sub-title);
+  font-size: var(--details);
+  color: var(--violet-acc1);
+}
+
+/* * STUDENT SECTION YEAR DIV */
+.student-section-year-div {
+  display: flex;
+  flex-flow: flex wrap;
+  gap: 1rem;
+  align-items: center;
+  flex: 1;
+}
+
+.student-section-year-div > p {
+  border-radius: var(--semi);
+  padding: 1rem;
+  font-weight: 600;
+  font-size: var(--details);
+  color: var(--green-acc);
+  background-color: var(--light-green-acc);
+}
+
+/* * FORM INPUTS DIV */
+.user-information-form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: var(--semi);
+  width: 100%;
+
+  max-width: 1440px;
+  margin-bottom: 10rem;
+}
+
+/* * ALL DIVS INSIDE THE FORM */
+.user-information-form > div:not(.profile-action-button-div) {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+}
+
+.user-information-form > div > label {
+  font-weight: 600;
+  font-size: var(--details);
+  color: var(--dark-gray);
+}
+
+.user-information-form > div > input {
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: var(--semi);
+  border: none;
+  background-color: var(--light2);
+}
+
+/* * ACTION BUTTONS DIV */
+.profile-action-button-div {
+  margin-left: auto;
+
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.profile-action-button-div > button {
+  padding: 1rem;
+  border-radius: var(--subtle);
+  border: none;
+  font-weight: 600;
+  font-size: var(--details);
+}
+
+/* * EDIT BUTTON */
+.profile-action-button-div > button:nth-of-type(1) {
+  color: var(--light-green-acc);
+  background-color: var(--green-acc);
+}
+
+/* * SAVE BUTTON */
+.profile-action-button-div > button:nth-of-type(2) {
+  color: var(--light-violet-acc);
+  background-color: var(--violet-acc1);
+}

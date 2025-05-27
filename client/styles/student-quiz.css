@@ -95,6 +95,9 @@ main > .quiz-header-instructions-container {
   background-color: white;
 
   padding: 1rem;
+  /* * ADDED */
+  max-width: 1280px;
+  margin-inline: auto;
 }
 
 .quiz-name-subject {
@@ -250,6 +253,10 @@ main > .quiz-header-instructions-container {
   .quiz-name-subject {
     width: 100%;
   }
+
+  .min-max-quiz-header-big {
+    display: none;
+  }
 }
 
 /* * QUIZ QUESTIONS CONTAINER */
@@ -260,6 +267,11 @@ main > .quiz-header-instructions-container {
   align-items: center;
   gap: 1rem;
   padding: 1rem;
+  width: 100%;
+
+  /* * ADDED */
+  max-width: 1280px;
+  margin-inline: auto;
 }
 
 /* * INDIV QUIZ QUESTION */
@@ -402,4 +414,17 @@ textarea.quiz-input-answer {
   justify-content: flex-end;
   background-color: var(--violet-acc1);
   color: white;
+}
+
+/* * TO MIN MAX QUIZ HEADER ON BIG SCREEN */
+.min-max-quiz-header-big {
+  position: absolute;
+  left: 50%;
+  bottom: -1rem;
+  transform: translateX(-50%);
+  background-color: var(--light-violet-acc);
+  padding: 0.5rem;
+  border-radius: var(--hard);
+  cursor: pointer;
+  color: var(--violet-acc1);
 }

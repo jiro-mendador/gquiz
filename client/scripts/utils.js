@@ -19,6 +19,9 @@ function onSideNavButtonsClick() {
           case 2:
             page = "student-response-history";
             break;
+          case 3:
+            page = "profile";
+            break;
           default:
             page = "dashboard";
         }
