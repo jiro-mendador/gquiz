@@ -1,0 +1,228 @@
+/* ! DEFAULTS */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+:root {
+  /* colors */
+  --darkest: #000000ff;
+
+  --light: #f3f5f7;
+  --lighter: #f6f5fa;
+  --lightest: #f3f4f4ff;
+  --light2: #fcfbfc;
+
+  --gray: #cdcddbff;
+  --light-gray: #e0dffe;
+  --dark-gray: rgb(146, 146, 155);
+
+  --orange-acc: #f9321aff;
+  --light-orange-acc: rgb(233, 174, 167);
+
+  --light-violet-acc: #eeeefc;
+  --violet-acc2: #5365d0ff;
+  --violet-acc1: #7047fdff;
+
+  --red-acc: #b9545c;
+  --light-red-acc: #fadcdd;
+
+  --green-acc: #59c189;
+  --light-green-acc: #f2fcf6;
+
+  /* font-sizes */
+  --title: 1.75em;
+  --sub-title: 1.5em;
+  --normal: 1.2em;
+  --details: 0.8em;
+  --sub-details: 0.6em;
+
+  /* border-radius */
+  --subtle: 10px;
+  --semi: 15px;
+  --hard: 30px;
+
+  /* * box shadow */
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  /* * THIS DIVIDES THE HEADER AND THE MAIN */
+  display: flex;
+  flex-flow: column nowrap;
+}
+/* ! END OF DEFAULTS */
+
+main {
+  flex: 1;
+
+  display: flex;
+  flex-flow: col nowrap;
+  gap: 2.5rem;
+
+  overflow: hidden;
+}
+
+/* * MAIN SECTION */
+.main-div-section {
+  padding: 2rem;
+
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 3rem;
+  width: 100%;
+
+  overflow-y: auto;
+}
+
+/* * page title */
+.page-title {
+  font-weight: 700;
+  font-size: var(--title);
+}
+
+/* * OVERALL COUNTS DIV */
+.overall-counts-div {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+
+/* * OVERALL USER COUNT DIV */
+.overall-count {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+
+  max-width: 10rem;
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--semi);
+  box-shadow: var(--shadow-sm);
+}
+
+.overall-count > p:nth-of-type(1) {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  align-items: center;
+
+  font-weight: 600;
+  font-size: var(--details);
+  color: var(--darkest);
+}
+
+.overall-count > p:nth-of-type(2) {
+  font-weight: 700;
+  font-size: var(--sub-title);
+  color: var(--violet-acc1);
+}
+
+/* * CHARTS DIV */
+.charts-div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 3rem;
+
+  margin-bottom: 10rem;
+}
+
+.chart-container,
+.chart-container-dough {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+}
+
+/* * TITLE OF CHARTS */
+.chart-container > p,
+.chart-container-dough > p {
+  font-weight: 600;
+  font-size: var(--normal);
+}
+
+/* * CANVAS FOR CHARTS */
+canvas {
+  border-radius: var(--semi);
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.dough-other-counts-div {
+  display: flex;
+  flex-flow: row wrap-reverse;
+  gap: 2rem;
+}
+
+.chart-container-dough {
+  width: max-content;
+}
+
+/* * DOUGH CHART */
+#doughnutChart {
+  max-width: 30rem !important;
+  max-height: 30rem !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* * OTHER COUNTS DIV */
+.other-counts-div {
+  flex: 1;
+  max-width: 1280px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+}
+
+/* * OTHER OVERALL COUNT */
+.other-count {
+  flex: 1;
+
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+
+  padding: 1rem;
+  border-radius: var(--semi);
+  box-shadow: var(--shadow-sm);
+
+  background-color: var(--light-violet-acc);
+}
+
+.other-count > p:nth-of-type(1) {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background-color: var(--violet-acc1);
+  border-radius: var(--semi);
+  padding: 0.5rem 1rem;
+  min-width: 7rem;
+
+  font-weight: 600;
+  font-size: var(--details);
+  color: var(--light-violet-acc);
+}
+
+.other-count > p:nth-of-type(2) {
+  margin: auto;
+  font-weight: 700;
+  font-size: var(--title);
+  color: var(--violet-acc1);
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DASHBOARD - GQUIZ</title>
+    <!-- * ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=analytics,arrow_drop_down,arrow_drop_up,book,check_circle,event,groups,history,home,pending_actions,person,quiz,school,search,shield_person,topic"
+    />
+
+    <!-- * STYLES -->
+    <link rel="stylesheet" href="../../styles/header.css" />
+    <link rel="stylesheet" href="../../styles/toast.css" />
+    <link rel="stylesheet" href="../../styles/pagination.css" />
+    <link rel="stylesheet" href="../../styles/side-nav.css" />
+    <link rel="stylesheet" href="../../styles/admin-dashboard.css" />
+
+    <!-- * FOR CHARTS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- * HEADER -->
+    <header>
+      <div class="logo-div">
+        <p>GQUIZ</p>
+      </div>
+      <div class="header-buttons">
+        <button class="log-in-button" id="header-login-button">LOG OUT</button>
+      </div>
+    </header>
+
+    <!-- * MAIN -->
+    <main>
+      <!-- * SIDE NAV -->
+      <nav>
+        <div class="selected" id="homeNavButton">
+          <span class="material-symbols-outlined"> home </span>
+          <p>Dashboard</p>
+        </div>
+        <div class="" id="">
+          <span class="material-symbols-outlined"> groups </span>
+          <p>Users</p>
+        </div>
+        <div id="side-nav-has-children">
+          <span class="material-symbols-outlined"> school </span>
+          <p>School</p>
+          <span class="material-symbols-outlined" id="arrow-span">
+            arrow_drop_up
+          </span>
+          <div id="inner-header-dropdown">
+            <div class="">
+              <span class="material-symbols-outlined"> event </span>
+              <p>Year & Section</p>
+            </div>
+            <div>
+              <span class="material-symbols-outlined"> book </span>
+              <p>Courses</p>
+            </div>
+            <div>
+              <span class="material-symbols-outlined"> topic </span>
+              <p>Subjects</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="material-symbols-outlined"> quiz </span>
+          <p>Quizzes</p>
+        </div>
+        <div>
+          <span class="material-symbols-outlined"> check_circle </span>
+          <p>Submissions</p>
+        </div>
+        <div class="" id="">
+          <span class="material-symbols-outlined"> analytics </span>
+          <p>Reports</p>
+        </div>
+        <div class="" id="profileNavButton">
+          <span class="material-symbols-outlined"> person </span>
+          <p>My Profile</p>
+        </div>
+      </nav>
+
+      <!-- * MAIN SECTION -->
+      <div class="main-div-section">
+        <!-- * PAGE TITLE -->
+        <p class="page-title">Dashboard</p>
+
+        <!-- * OVERALL COUNTS -->
+        <div class="overall-counts-div">
+          <div class="overall-count">
+            <p><span class="material-symbols-outlined"> groups </span>Users</p>
+            <p>100</p>
+          </div>
+          <div class="overall-count">
+            <p>
+              <span class="material-symbols-outlined"> shield_person </span
+              >Admins
+            </p>
+            <p>100</p>
+          </div>
+          <div class="overall-count">
+            <p>
+              <span class="material-symbols-outlined"> school </span>Teachers
+            </p>
+            <p>100</p>
+          </div>
+          <div class="overall-count">
+            <p>
+              <span class="material-symbols-outlined"> school </span>Students
+            </p>
+            <p>100</p>
+          </div>
+        </div>
+
+        <!-- * CHARTS -->
+        <div class="charts-div">
+          <div class="chart-container">
+            <p>Total Quiz vs Submission</p>
+            <canvas id="barChart"></canvas>
+          </div>
+          <div class="dough-other-counts-div">
+            <div class="chart-container-dough">
+              <p>Students Per Course</p>
+              <canvas id="doughnutChart"></canvas>
+            </div>
+            <div class="other-counts-div">
+              <div class="other-count">
+                <p>
+                  <span class="material-symbols-outlined"> book </span>Courses
+                </p>
+                <p>100</p>
+              </div>
+              <div class="other-count">
+                <p>
+                  <span class="material-symbols-outlined"> topic </span>Subjects
+                </p>
+                <p>100</p>
+              </div>
+              <div class="other-count">
+                <p>
+                  <span class="material-symbols-outlined"> quiz </span>Quizzes
+                </p>
+                <p>100</p>
+              </div>
+              <div class="other-count">
+                <p>
+                  <span class="material-symbols-outlined"> check_circle </span
+                  >Submissions
+                </p>
+                <p>100</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- * TOAST -->
+    <div id="toast-container">
+      <div class="toast">
+        <div class="message-div">
+          <p class="message" id="message">
+            This is the message Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Dolorum, cupiditate!
+          </p>
+        </div>
+        <div class="line"></div>
+        <div class="button-options">
+          <button class="cancel" id="cancelButton">CANCEL</button>
+          <button class="proceed" id="proceedButton">PROCEED</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../scripts/adminDashboard.js" type="module"></script>
+  </body>
+</html>
