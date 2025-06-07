@@ -1,6 +1,6 @@
-from ..controllers.student_course_year_section_subject_controllers import get, post, put, delete
+from ..controllers.student_course_year_section_controllers import get, post, put, delete
 
-def studentCourseYearSectionSubjectApi(request, id=None):
+def studentCourseYearSectionApi(request, id=None):
   if request.method == 'GET':
     return get(request)
   elif request.method == 'POST':

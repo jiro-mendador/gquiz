@@ -154,6 +154,11 @@ main {
   font-size: var(--normal);
 }
 
+.chart-container > p > span {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
 /* * CANVAS FOR CHARTS */
 canvas {
   border-radius: var(--semi);

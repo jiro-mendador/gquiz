@@ -1,11 +1,14 @@
 from rest_framework import serializers
 from api.models import User, Course, YearSection, Subject, \
-  StudentCourseYearSectionSubject, Quiz, QuizQuestion, QuizChoice, QuizAttempt, QuizSubmission
+  StudentCourseYearSection, Quiz, QuizQuestion, QuizChoice, QuizAttempt, QuizSubmission
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+        extra_kwargs = {
+            'password': {'write_only': True, 'required': False},
+        }
         
     def create(self, validated_data):
         password = validated_data.pop('password')
@@ -41,9 +44,9 @@ class SubjectSerializer(serializers.ModelSerializer):
         model = Subject
         fields = '__all__'
         
-class StudentCourseYearSectionSubjectSerializer(serializers.ModelSerializer):
+class StudentCourseYearSectionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = StudentCourseYearSectionSubject
+        model = StudentCourseYearSection
         fields = '__all__'
 
 class QuizSerializer(serializers.ModelSerializer):

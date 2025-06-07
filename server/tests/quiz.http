@@ -2,18 +2,18 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All 
-GET {{baseUrl}}/quiz
+GET {{baseUrl}}/quiz?subject=5
 
 ### * CREATE 
 POST {{baseUrl}}/quiz
 Content-Type: application/json
 
 {
-  "title": "Data Structures",
-  "quiz_start_date": "2025-05-14 09:00:00",
-  "quiz_end_date": "2025-05-14 10:00:00",
-  "instructions": "Just answer it, are you stupid???",
-  "subject": 1
+  "title": "Quiz Number 2",
+  "quiz_start_date": "2025-08-14 09:00:00",
+  "quiz_end_date": "2025-08-14 10:00:00",
+  "instructions": "Secret Tanga ka baaaaaaaaaa????????",
+  "subject": 6
 }
 
 ### * UPDATE (u cant update without the whole required fields!)

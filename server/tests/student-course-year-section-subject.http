@@ -2,10 +2,10 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All 
-GET {{baseUrl}}/student-course-year-section-subject
+GET {{baseUrl}}/student-course-year-section?student=34
 
 ### * CREATE 
-POST {{baseUrl}}/student-course-year-section-subject
+POST {{baseUrl}}/student-course-year-section
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### * UPDATE (u cant update without the whole required fields!)
-PUT {{baseUrl}}/student-course-year-section-subject/1
+PUT {{baseUrl}}/student-course-year-section/1
 Content-Type: application/json
 
 {
@@ -27,4 +27,4 @@ Content-Type: application/json
 }
 
 ### * DELETE
-DELETE {{baseUrl}}/student-course-year-section-subject/1
+DELETE {{baseUrl}}/student-course-year-section/1

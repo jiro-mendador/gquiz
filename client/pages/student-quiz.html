@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../styles/student-quiz.css" />
+    <link rel="stylesheet" href="../styles/toast.css" />
   </head>
   <body>
     <!-- * HEADER -->
@@ -26,7 +27,6 @@
     <!-- * MAIN SECTION -->
     <main>
       <div class="quiz-header-instructions-container">
-
         <!-- * TO MIN MAX HEADER ON BIG SCREEN -->
         <div class="min-max-quiz-header-big" id="minMaxHeaderButtonBig">
           <span class="material-symbols-outlined">
@@ -46,15 +46,15 @@
             <p>Intermediate Programming</p>
           </div>
           <div class="quiz-progress-container">
-            <p>50%</p>
+            <p id="progress-percentage">0%</p>
             <div class="quiz-progress">
-              <div></div>
+              <div id="quiz-progress-level"></div>
             </div>
           </div>
           <div class="quiz-time-left-container">
             <span class="material-symbols-outlined"> history </span>
             <div class="quiz-time-left">
-              <p>00:00:00</p>
+              <p id="quiz-timer">00:00:00</p>
               <p>Time Left</p>
             </div>
           </div>
@@ -71,22 +71,22 @@
         </div>
       </div>
       <!-- * QUIZ QUESTIONS CONTAINER -->
-      <div class="quiz-questions-container">
+      <div class="quiz-questions-container" id="quiz-questions-container">
         <!-- * INDIV QUIZ QUESTION -- ESSAY -->
-        <div class="quiz-question">
+        <!-- <div class="quiz-question">
           <div class="quiz-number-question">
             <p>Question 4</p>
             <p>
               Name the process by which plants make their own food using
               sunlight and elaborate it.
             </p>
-          </div>
-          <!-- * QUIZ QUESTION TYPE -->
-          <p class="quiz-question-type">ESSAY</p>
-          <!-- * QUIZ CHOICES CONTAINER -->
-          <div class="quiz-choices-container">
-            <!-- * INDIV QUIZ CHOICE -->
-            <textarea
+          </div> -->
+        <!-- * QUIZ QUESTION TYPE -->
+        <!-- <p class="quiz-question-type">ESSAY</p> -->
+        <!-- * QUIZ CHOICES CONTAINER -->
+        <!-- <div class="quiz-choices-container"> -->
+        <!-- * INDIV QUIZ CHOICE -->
+        <!-- <textarea
               type="text"
               class="quiz-input-answer"
               required
@@ -95,72 +95,7 @@
               placeholder="Enter your answer here..."
             ></textarea>
           </div>
-        </div>
-
-        <!-- * INDIV QUIZ QUESTION -- IDENTIFICATION/FILL IN THE BLANKS -->
-        <div class="quiz-question">
-          <div class="quiz-number-question">
-            <p>Question 3</p>
-            <p>The chemical symbol for water is ___ .</p>
-          </div>
-          <!-- * QUIZ QUESTION TYPE -->
-          <p class="quiz-question-type">IDENTIFICATION</p>
-          <!-- * QUIZ CHOICES CONTAINER -->
-          <div class="quiz-choices-container">
-            <!-- * INDIV QUIZ CHOICE -->
-            <input
-              type="text"
-              class="quiz-input-answer"
-              required
-              id=""
-              name=""
-              placeholder="Enter your answer here..."
-            />
-          </div>
-        </div>
-
-        <!-- * INDIV QUIZ QUESTION -- MULTIPLE CHOICE -->
-        <div class="quiz-question">
-          <div class="quiz-number-question">
-            <p>Question 1</p>
-            <p>What is the first letter in the English Alphabet?</p>
-          </div>
-          <!-- * QUIZ QUESTION TYPE -->
-          <p class="quiz-question-type">Multiple Choice</p>
-          <!-- * QUIZ CHOICES CONTAINER -->
-          <div class="quiz-choices-container">
-            <!-- * INDIV QUIZ CHOICE -->
-            <div class="quiz-select-one-choice">
-              <p>Letter A</p>
-            </div>
-            <div class="quiz-select-one-choice">
-              <p>Letter Z</p>
-            </div>
-            <div class="quiz-select-one-choice selected">
-              <p>Letter E</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- * INDIV QUIZ QUESTION -- TRUE/FALSE -->
-        <div class="quiz-question">
-          <div class="quiz-number-question">
-            <p>Question 2</p>
-            <p>The Great Wall of China is visible from the Moon.</p>
-          </div>
-          <!-- * QUIZ QUESTION TYPE -->
-          <p class="quiz-question-type">True/False</p>
-          <!-- * QUIZ CHOICES CONTAINER -->
-          <div class="quiz-choices-container">
-            <!-- * INDIV QUIZ CHOICE -->
-            <div class="quiz-select-one-choice selected">
-              <p>True</p>
-            </div>
-            <div class="quiz-select-one-choice">
-              <p>False</p>
-            </div>
-          </div>
-        </div>
+        </div> -->
       </div>
 
       <!-- * QUIZ ACTION BUTTONS -->
@@ -169,12 +104,28 @@
           <span class="material-symbols-outlined"> arrow_back </span>
           Cancel
         </div>
-        <div class="quiz-submit-button">
+        <div class="quiz-submit-button" id="submitQuizButton">
           Submit
           <span class="material-symbols-outlined"> check </span>
         </div>
       </div>
     </main>
+
+    <div id="toast-container">
+      <div class="toast">
+        <div class="message-div">
+          <p class="message" id="message">
+            This is the message Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Dolorum, cupiditate!
+          </p>
+        </div>
+        <div class="line"></div>
+        <div class="button-options">
+          <button class="cancel" id="cancelButton">CANCEL</button>
+          <button class="proceed" id="proceedButton">PROCEED</button>
+        </div>
+      </div>
+    </div>
 
     <script src="../scripts/studentQuiz.js" type="module"></script>
   </body>

@@ -1,7 +1,7 @@
 import myAxios from "./request.js";
 import API from "./API.js";
 import showToast from "./toast.js";
-import { navigate } from "./utils.js";
+import { navigate, applyMainSectionMargin } from "./utils.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   // * CHECK IF THE USER IS STILL LOGGED IN
@@ -10,7 +10,10 @@ window.addEventListener("DOMContentLoaded", () => {
     navigate("./dashboard.html");
   }
 
-  let headerLoginButton = document.getElementById("header-login-button");
+  // * styles
+  applyMainSectionMargin();
+
+  let headerLoginButton = document.getElementById("header-index-login-button");
   let headerSignUpButton = document.getElementById("header-signup-button");
   let loginForm = document.getElementById("loginForm");
   let signupForm = document.getElementById("signupForm");
@@ -44,17 +47,27 @@ window.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.data.success) {
-        showToast("success", response.data.message);
+        showToast(response.data.message);
 
         // * save user id on localStorage for later
         localStorage.setItem("gquizCurrentUserId", response.data.user_id);
+        localStorage.setItem("gquizCurrentUserRole", response.data.role);
 
         setTimeout(() => {
-          navigate("./dashboard.html");
+          navigate(
+            response.data.role === "student"
+              ? "./dashboard.html"
+              : "./admin-teacher/admin-dashboard.html"
+          );
         }, 1000);
       }
     } catch (ex) {
-      showToast("error", ex.data.message);
+      if (ex.data.errors) {
+        const errorMessage = Object.values(ex.data.errors).flat().join(", ");
+        showToast(errorMessage);
+      } else {
+        showToast(ex);
+      }
     }
   }
 
@@ -68,27 +81,44 @@ window.addEventListener("DOMContentLoaded", () => {
     let username = document.getElementById("username");
     let email = document.getElementById("email-reg");
     let password = document.getElementById("password-reg");
+    let yearSection = document.getElementById("year-section");
+    let course = document.getElementById("course");
+    let role = "student";
 
     try {
       const response = await myAxios.post(`${API}/user`, {
-        firstName: firstName.value,
-        middleName: middleName.value,
-        lastName: lastName.value,
+        first_name: firstName.value,
+        middle_name: middleName.value,
+        last_name: lastName.value,
         username: username.value,
         email: email.value,
         password: password.value,
       });
 
       if (response.data.success) {
-        showToast("success", response.data.message);
+        console.log(response.data);
+
+        // * check if it is a student
+        if (role === "student") {
+          // * after saving the user, save the student's year, section, and course on another table
+          await myAxios.post(`${API}/student-course-year-section`, {
+            course: course.value,
+            year_section: yearSection.value,
+            student: response.data.data.id,
+          });
+        }
+
+        showToast(response.data.message);
 
         setTimeout(() => {
           headerLoginClicked();
         }, 1500);
       }
     } catch (ex) {
-      const errorMessage = Object.values(ex.data.errors).flat().join(", ");
-      showToast("error", errorMessage);
+      if (ex.data && ex.data?.errors) {
+        const errorMessage = Object.values(ex.data.errors).flat().join(", ");
+        showToast(errorMessage);
+      }
     }
   }
 });

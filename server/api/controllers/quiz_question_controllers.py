@@ -15,7 +15,10 @@ def get(request):
   return Response({"success": True, "message": "All quiz questions retrieved successfully", "data": serializer.data})
 
 def post(request):
-  serializer = QuizQuestionSerializer(data=request.data)
+  is_many = isinstance(request.data, list)  # Check if the request contains a list
+  
+  serializer = QuizQuestionSerializer(data=request.data, many=is_many)
+  
   if serializer.is_valid():
       serializer.save()
       return Response({"success": True, "message": "Added successfully", "data": serializer.data}, status=status.HTTP_201_CREATED)

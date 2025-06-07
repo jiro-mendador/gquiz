@@ -2,7 +2,7 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All 
-GET {{baseUrl}}/subject
+GET {{baseUrl}}/subject?course=1&year=1
 
 ### * CREATE 
 POST {{baseUrl}}/subject
@@ -11,7 +11,8 @@ Content-Type: application/json
 {
   "subject_code": "CCS-101",
   "description": "Computer Programming 1",
-  "teacher": 2
+  "teacher": 10,
+  "course": 1
 }
 
 ### * UPDATE (u cant update without the whole required fields!)

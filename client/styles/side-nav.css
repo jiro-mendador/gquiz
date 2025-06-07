@@ -47,6 +47,9 @@ nav {
   display: flex;
   flex-flow: column nowrap;
   gap: 1rem;
+
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 nav > div {
@@ -54,9 +57,10 @@ nav > div {
   border-radius: var(--subtle);
 
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   gap: 1rem;
   align-items: center;
+  flex: 0 0 auto;
 }
 
 nav > div.selected {
@@ -82,11 +86,32 @@ nav > div:hover:not(.selected) {
 
     padding: 0.5rem;
     justify-content: center;
+    max-width: 100%;
+    width: 90vw;
   }
 
-  nav > div > p {
+  nav > div > p,
+  #inner-header-dropdown > div p,
+  #side-nav-has-children > span:nth-of-type(2) {
     display: none;
   }
+
+  nav::-webkit-scrollbar {
+    display: none;
+  }
+  nav {
+    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  #inner-header-dropdown {
+    flex-flow: row nowrap !important;
+  }
+}
+
+nav > div#side-nav-has-children {
+  display: flex;
+  flex-flow: row wrap;
 }
 
 #inner-header-dropdown {
@@ -99,7 +124,8 @@ nav > div:hover:not(.selected) {
 
 #inner-header-dropdown > div {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
+  align-items: center;
   gap: 1rem;
   cursor: pointer;
   padding: 0.5rem 1rem;

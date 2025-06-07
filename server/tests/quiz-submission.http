@@ -2,24 +2,25 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All 
-GET {{baseUrl}}/quiz-submission
+GET {{baseUrl}}/quiz-submission?id=6&quiz=7
 
 ### * CREATE 
 POST {{baseUrl}}/quiz-submission
 Content-Type: application/json
 
 {
-  "quiz": 1,
-  "student": 1
+  "quiz": 7,
+  "student": 17
 }
 
 ### * UPDATE (u cant update without the whole required fields!)
-PUT {{baseUrl}}/quiz-submission/3
+PUT {{baseUrl}}/quiz-submission/1
 Content-Type: application/json
 
 {
-  "quiz": 1,
-  "student": 1
+  "quiz": 7,
+  "student": 17,
+  "submitted_at": "2025-06-07T12:36:00Z"
 }
 
 ### * DELETE

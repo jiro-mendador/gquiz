@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
   "year": 1,
-  "section": "A"
+  "section": "B"
 }
 
 ### * UPDATE (u cant update without the whole required fields!)

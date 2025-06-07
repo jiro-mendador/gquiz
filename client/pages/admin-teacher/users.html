@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YEAR SECTION - GQUIZ</title>
+    <title>USERS - GQUIZ</title>
     <!-- * ICONS -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,chevron_left,chevron_right,delete,edit,groups,history,home,pending_actions,person,quiz,school,search,shield_person"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,analytics,arrow_drop_down,arrow_drop_up,book,check_circle,chevron_left,chevron_right,delete,edit,event,groups,history,home,pending_actions,person,quiz,school,search,shield_person,topic"
     />
 
     <!-- * STYLES -->
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../styles/pagination.css" />
     <link rel="stylesheet" href="../../styles/side-nav.css" />
     <link rel="stylesheet" href="../../styles/title-search-filter.css" />
-    <link rel="stylesheet" href="../../styles/yearSection.css" />
+    <link rel="stylesheet" href="../../styles/users.css" />
 
     <!-- * FOR CHARTS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -40,18 +40,18 @@
           <span class="material-symbols-outlined"> home </span>
           <p>Dashboard</p>
         </div>
-        <div class="" id="">
+        <div class="selected" id="">
           <span class="material-symbols-outlined"> groups </span>
           <p>Users</p>
         </div>
-        <div class="selected" id="side-nav-has-children">
+        <div id="side-nav-has-children">
           <span class="material-symbols-outlined"> school </span>
           <p>School</p>
           <span class="material-symbols-outlined" id="arrow-span">
             arrow_drop_up
           </span>
           <div id="inner-header-dropdown">
-            <div class="selected">
+            <div class="">
               <span class="material-symbols-outlined"> event </span>
               <p>Year & Section</p>
             </div>
@@ -73,10 +73,6 @@
           <span class="material-symbols-outlined"> check_circle </span>
           <p>Submissions</p>
         </div>
-        <div class="" id="">
-          <span class="material-symbols-outlined"> analytics </span>
-          <p>Reports</p>
-        </div>
         <div class="" id="profileNavButton">
           <span class="material-symbols-outlined"> person </span>
           <p>My Profile</p>
@@ -97,23 +93,27 @@
           <!-- * SEARCH FILTER CONTAINER -->
           <div class="search-filter-container">
             <div class="input-search-div">
-              <input type="text" id="" name="" placeholder="Search" />
+              <input
+                type="text"
+                id="searchInput"
+                name="searchInput"
+                placeholder="Search"
+              />
               <span class="material-symbols-outlined"> search </span>
             </div>
             <div class="select-filter-div">
-              <select name="" id="" class="custom-select">
+              <select name="roleFilter" id="roleFilter" class="custom-select">
                 <option value="">-- Roles --</option>
-                <option value="">All Roles</option>
-                <option value="">Student</option>
-                <option value="">Teacher</option>
-                <option value="">Admin</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
               </select>
             </div>
           </div>
         </div>
 
         <!-- * TABLE OF USERS -->
-        <div class="custom-table">
+        <div class="custom-table" id="userTable">
           <!-- * TABLE HEADERS -->
           <div class="custom-table-header">
             <div>First Name</div>
@@ -126,7 +126,7 @@
           <!-- * TABLE ROWS -->
           <div class="custom-table-rows">
             <!-- * TABLE DATA -->
-            <div class="custom-table-data">
+            <!-- <div class="custom-table-data">
               <div><span>Sample First Name</span></div>
               <div><span>Sample Middle Name</span></div>
               <div><span>Sample Last Name</span></div>
@@ -138,12 +138,12 @@
                 <span class="material-symbols-outlined">edit</span>
                 <span class="material-symbols-outlined">delete</span>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
 
         <!-- * PAGINATION -->
-        <div class="pagination-container">
+        <!-- <div class="pagination-container">
           <div class="pagination-icons-div">
             <span class="material-symbols-outlined"> chevron_left </span>
           </div>
@@ -155,7 +155,7 @@
           <div class="pagination-icons-div">
             <span class="material-symbols-outlined"> chevron_right </span>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
 
@@ -163,43 +163,49 @@
     <div class="add-update-user-div" id="addUpdateUserDiv">
       <form id="addUpdateUserForm">
         <p>Add User</p>
-        <div class="add-update-inputs-div">
+        <div class="add-update-inputs-div" id="UserInputs">
           <div>
             <label for="firstName">First Name</label>
-            <input type="text" name="firstName" id="firstName" required />
+            <input type="text" name="firstName" id="firstName" />
           </div>
           <div>
             <label for="middleName">Middle Name</label>
-            <input type="text" name="middleName" id="middleName" required />
+            <input type="text" name="middleName" id="middleName" />
           </div>
           <div>
             <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" id="lastName" required />
+            <input type="text" name="lastName" id="lastName" />
           </div>
           <div>
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" required />
+            <input type="text" name="username" id="username" />
           </div>
           <div>
-            <label for="username">Role</label>
+            <label for="role">Role</label>
             <select name="role" id="role">
-              <option value="student">Student</option>
-              <option value="teacher">Teacher</option>
               <option value="admin">Admin</option>
+              <option value="teacher">Teacher</option>
+              <option value="student">Student</option>
             </select>
+
+            <div class="student-year-section-course-div">
+              <div>
+                <label for="year-section">Year & Section</label>
+                <select name="year-section" id="year-section"></select>
+              </div>
+              <div>
+                <label for="course">Course</label>
+                <select name="course" id="course"></select>
+              </div>
+            </div>
           </div>
           <div>
-            <label for="email-reg">Email</label>
-            <input type="text" name="email-reg" id="email-reg" required />
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" />
           </div>
           <div>
-            <label for="password-reg">Password</label>
-            <input
-              type="password"
-              name="password-reg"
-              id="password-reg"
-              required
-            />
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
           </div>
           <div class="add-update-buttons-div">
             <button id="cancelAddEditUserButton">Cancel</button>
@@ -226,6 +232,6 @@
       </div>
     </div>
 
-    <script src="../../scripts/yearSection.js" type="module"></script>
+    <script src="../../scripts/users.js" type="module"></script>
   </body>
 </html>

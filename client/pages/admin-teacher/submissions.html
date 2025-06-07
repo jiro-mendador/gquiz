@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUBMISSIONS - GQUIZ</title>
+    <!-- * ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,analytics,arrow_drop_down,arrow_drop_up,book,check,check_circle,chevron_left,chevron_right,close,delete,edit,event,groups,history,home,pending_actions,person,quiz,school,search,shield_person,smart_toy,topic"
+    />
+
+    <!-- * STYLES -->
+    <link rel="stylesheet" href="../../styles/header.css" />
+    <link rel="stylesheet" href="../../styles/toast.css" />
+    <link rel="stylesheet" href="../../styles/pagination.css" />
+    <link rel="stylesheet" href="../../styles/side-nav.css" />
+    <link rel="stylesheet" href="../../styles/title-search-filter.css" />
+    <link rel="stylesheet" href="../../styles/submissions.css" />
+
+    <!-- * FOR CHARTS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- * HEADER -->
+    <header>
+      <div class="logo-div">
+        <p>GQUIZ</p>
+      </div>
+      <div class="header-buttons">
+        <button class="log-in-button" id="header-login-button">LOG OUT</button>
+      </div>
+    </header>
+
+    <!-- * MAIN -->
+    <main>
+      <!-- * SIDE NAV -->
+      <nav>
+        <div class="" id="homeNavButton">
+          <span class="material-symbols-outlined"> home </span>
+          <p>Dashboard</p>
+        </div>
+        <div class="" id="">
+          <span class="material-symbols-outlined"> groups </span>
+          <p>Users</p>
+        </div>
+        <div id="side-nav-has-children">
+          <span class="material-symbols-outlined"> school </span>
+          <p>School</p>
+          <span class="material-symbols-outlined" id="arrow-span">
+            arrow_drop_up
+          </span>
+          <div id="inner-header-dropdown">
+            <div class="">
+              <span class="material-symbols-outlined"> event </span>
+              <p>Year & Section</p>
+            </div>
+            <div>
+              <span class="material-symbols-outlined"> book </span>
+              <p>Courses</p>
+            </div>
+            <div>
+              <span class="material-symbols-outlined"> topic </span>
+              <p>Subjects</p>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <span class="material-symbols-outlined"> quiz </span>
+          <p>Quizzes</p>
+        </div>
+        <div class="selected">
+          <span class="material-symbols-outlined"> check_circle </span>
+          <p>Submissions</p>
+        </div>
+        <div class="" id="profileNavButton">
+          <span class="material-symbols-outlined"> person </span>
+          <p>My Profile</p>
+        </div>
+      </nav>
+
+      <!-- * MAIN SECTION -->
+      <div class="main-div-section">
+        <!-- * TITLE SEARCH FILTER -->
+        <div class="page-title-search-filter">
+          <div class="page-title-add-button-div">
+            <p>Submissions</p>
+          </div>
+          <!-- * SEARCH FILTER CONTAINER -->
+          <div class="search-filter-container">
+            <div class="input-search-div">
+              <input type="text" id="searchInput" name="searchInput" placeholder="Search" />
+              <span class="material-symbols-outlined"> search </span>
+            </div>
+            <div class="select-filter-div">
+              <select name="filter-quiz" id="filter-quiz" class="custom-select">
+                <option value="">-- Quizzes --</option>
+                <option value="">All Quizzes</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- * TABLE -->
+        <div class="custom-table" id="submissionTable">
+          <!-- * TABLE HEADERS -->
+          <div class="custom-table-header">
+            <div>Quiz</div>
+            <div>Subject</div>
+            <div>Teacher</div>
+            <div>Student</div>
+            <div>Score</div>
+            <div>Submission Date</div>
+            <div>Actions</div>
+          </div>
+          <!-- * TABLE ROWS -->
+          <div class="custom-table-rows">
+            <!-- * TABLE DATA -->
+            <!-- <div class="custom-table-data">
+              <div><span>Data Structures</span></div>
+              <div><span>Data Structures</span></div>
+              <div><span>Teacher 1</span></div>
+              <div><span>Student 1</span></div>
+              <div><span>10/50</span></div>
+              <div><span>2025-05-14 09:00:00.000000 </span></div>
+              <div>
+                <span class="material-symbols-outlined editSubmissionButton"
+                  >edit</span
+                >
+                <span class="material-symbols-outlined">delete</span>
+              </div>
+            </div> -->
+          </div>
+        </div>
+
+        <!-- * PAGINATION -->
+        <!-- <div class="pagination-container">
+          <div class="pagination-icons-div">
+            <span class="material-symbols-outlined"> chevron_left </span>
+          </div>
+          <div class="pagination-numbers">
+            <button class="selected-page">1</button>
+            <button>2</button>
+            <button>3</button>
+          </div>
+          <div class="pagination-icons-div">
+            <span class="material-symbols-outlined"> chevron_right </span>
+          </div>
+        </div> -->
+      </div>
+    </main>
+
+    <!-- * ADD/UPDATE -->
+    <div class="add-update-div" id="addUpdateDiv">
+      <!-- * MANUAL FORM -->
+      <form id="addUpdateForm">
+        <p>Submitted Response</p>
+        <div class="add-update-inputs-div" id="add-update-inputs-div">
+          <!-- * QUIZ DETAILS -->
+          <div class="quiz-details-div">
+            <div>
+              <p>Quiz Title</p>
+              <input type="text" disabled />
+            </div>
+            <div>
+              <p>Teacher</p>
+              <input type="text" disabled />
+            </div>
+            <div>
+              <p>Subject</p>
+              <input type="text" disabled />
+            </div>
+            <div>
+              <p>Student</p>
+              <input type="text" disabled />
+            </div>
+            <div>
+              <p>Submitted On</p>
+              <input type="datetime-local" disabled />
+            </div>
+            <div>
+              <p>Score</p>
+              <input type="text" disabled />
+            </div>
+          </div>
+
+          <!-- * MULTIPLE CHOICE / TRUE FALSE QUESTION DIV -->
+          <!-- <div class="question-choices-inputs-div">
+            <div class="question-div">
+              <p>Question</p>
+              <input type="text" disabled />
+            </div>
+
+            <div class="choices-container">
+              <p>Choices</p>
+              <div class="indiv-choices-div">
+                <div>
+                  <input type="text" disabled />
+                </div>
+              </div>
+            </div>
+
+            <div class="answer-container">
+              <p>Student Answer</p>
+              <input type="text" required />
+            </div>
+
+            <div class="answer-container">
+              <p>Correct Answer</p>
+              <input type="text" disabled />
+            </div>
+
+            <div class="student-mark-div">
+              <span class="material-symbols-outlined unmarked-answer">
+                check
+              </span>
+              <span class="material-symbols-outlined unmarked-answer">
+                close
+              </span>
+            </div>
+          </div> -->
+
+          <!-- * ADD QUESTION WITH TYPE -->
+          <!-- <div class="add-question-type-div" id="add-question-type-div">
+            <select name="question-type" id="question-type">
+              <option value="">-- Question Type --</option>
+              <option value="multiple_choice">Multiple Choice</option>
+              <option value="true_false">True or False</option>
+              <option value="identification">Identification</option>
+            </select>
+            <button
+              class="add-question-button"
+              id="addQuizQuestion"
+              type="button"
+            >
+              <span class="material-symbols-outlined"> add </span>Add Question
+            </button>
+          </div> -->
+
+          <!-- * ACTION BUTTONS -->
+          <div class="add-update-buttons-div">
+            <button id="cancelAddEditButton">Back</button>
+            <!-- <input type="submit" value="Save" /> -->
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- * TOAST -->
+    <div id="toast-container">
+      <div class="toast">
+        <div class="message-div">
+          <p class="message" id="message">
+            This is the message Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Dolorum, cupiditate!
+          </p>
+        </div>
+        <div class="line"></div>
+        <div class="button-options">
+          <button class="cancel" id="cancelButton">CANCEL</button>
+          <button class="proceed" id="proceedButton">PROCEED</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../scripts/submissions.js" type="module"></script>
+  </body>
+</html>

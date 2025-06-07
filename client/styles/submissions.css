@@ -102,7 +102,12 @@ main {
   font-size: var(--title);
 }
 
-.page-title-add-button-div > button {
+.page-title-add-button-div > div {
+  display: flex;
+  gap: 1rem;
+}
+
+.page-title-add-button-div button {
   padding: 1rem;
   border: none;
   border-radius: var(--semi);
@@ -178,11 +183,6 @@ main {
   font-size: var(--details);
 }
 
-/* * EMAIL COL */
-.custom-table-data > div:nth-of-type(4) {
-  color: var(--violet-acc1);
-}
-
 /* * ROLE COL SPAN ACTUAL VALUE */
 .custom-table-data > div:nth-of-type(5) > span {
   background-color: var(--light-violet-acc);
@@ -191,8 +191,14 @@ main {
   border-radius: var(--semi);
 }
 
+.custom-table-data > div:nth-of-type(6) > span {
+  color: var(--violet-acc1);
+  padding: 0.5rem 1rem;
+  border-radius: var(--semi);
+}
+
 /* * ACTION BUTTONS COL */
-.custom-table-data > div:nth-of-type(6) {
+.custom-table-data > div:nth-of-type(7) {
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
@@ -200,7 +206,7 @@ main {
   cursor: pointer;
 }
 
-.custom-table-data > div:nth-of-type(6) > span {
+.custom-table-data > div:nth-of-type(7) > span {
   flex: 1;
   text-align: center;
   padding: 0.5rem;
@@ -209,27 +215,27 @@ main {
 }
 
 /* * EDIT BUTTON */
-.custom-table-data > div:nth-of-type(6) > span:nth-of-type(1) {
+.custom-table-data > div:nth-of-type(7) > span:nth-of-type(1) {
   background-color: var(--light-green-acc);
   color: var(--green-acc);
 }
 
 /* * DELETE BUTTON */
-.custom-table-data > div:nth-of-type(6) > span:nth-of-type(2) {
+.custom-table-data > div:nth-of-type(7) > span:nth-of-type(2) {
   background-color: var(--light-red-acc);
   color: var(--red-acc);
 }
 
-/* * OVERLAY OF ADD/UPDATE USER DIV */
-.add-update-user-div {
+/* * OVERLAY OF ADD/UPDATE DIV */
+.add-update-div {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  /* display: flex; */
   display: none;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   z-index: 9999;
@@ -237,7 +243,7 @@ main {
 }
 
 /* * ACTUAL FORM THAT SERVERS AS CONTAINER */
-#addUpdateUserForm {
+#addUpdateForm {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -245,15 +251,19 @@ main {
   background-color: white;
   padding: 2rem;
   width: 100%;
-  max-width: 40rem;
+  max-width: 50rem;
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   margin: 1rem;
 }
 
+#addUpdateForm {
+  display: none;
+}
+
 /* * FORM TITLE */
-#addUpdateUserForm > p {
+#addUpdateForm > p {
   font-weight: 700;
   font-size: var(--normal);
   color: var(--violet-acc1);
@@ -267,38 +277,132 @@ main {
   min-height: max-content;
 }
 
-/* * div for student's course and year section */
-.student-year-section-course-div {
-  margin-top: 1rem;
-  display: none;
+/* * DIV OF QUESTION WITH CHOICE */
+.question-choices-inputs-div {
+  position: relative;
+  display: flex;
   flex-flow: column nowrap;
   gap: 1rem;
+
+  border: 2px solid var(--violet-acc1);
+  border-radius: var(--subtle);
+  padding: 1rem;
 }
 
-/* * ACTUAL DIV CONTAINING INPUTS */
-.add-update-inputs-div > div:not(.add-update-buttons-div),
-.student-year-section-course-div div {
+/* * INDIV QUESTION */
+.question-div {
   display: flex;
   flex-flow: column nowrap;
   gap: 0.5rem;
 }
 
-/* * LABELS */
-.add-update-inputs-div > div > label,
-.student-year-section-course-div label {
+.question-div > p {
   font-weight: 600;
   font-size: var(--details);
 }
 
-/* * INPUTS, SELECT */
-.add-update-inputs-div > div > input:not([type="submit"]),
-.add-update-inputs-div > div > select,
-.student-year-section-course-div select {
-  padding: 1rem;
+/* * ACTUAL QUESTION */
+.question-div > input {
+  font-size: var(--normal);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--subtle);
+  background-color: var(--light);
+}
+
+/* * CHOICE LABEL AND CHOICES DIV */
+.choices-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+}
+
+.choices-container > p {
+  font-weight: 600;
+  font-size: var(--details);
+}
+
+/* * DIV CONTAINER INDIV CHOICES */
+.choices-container > .indiv-choices-div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+}
+
+/* * INDIV CHOICES */
+.choices-container > .indiv-choices-div > div {
+  display: flex;
+  flex-flow: flex nowrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.choices-container > .indiv-choices-div > div {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+}
+
+.choices-container > .indiv-choices-div > div > input {
+  background-color: var(--light);
+  border-radius: var(--subtle);
+  border: 2px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: var(--details);
+  width: 100%;
+}
+
+/* * CORRECT ANSWER DIV */
+.answer-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+}
+
+.answer-container > p {
+  font-weight: 600;
+  font-size: var(--details);
+}
+
+.answer-container > input {
+  background-color: var(--light);
+  padding: 0.5rem 1rem;
   border-radius: var(--subtle);
   border: none;
-  background-color: var(--light);
+}
+
+/* * ADD ANOTHER QUESTION WITH TYPE DIV */
+.add-question-type-div {
+  margin-top: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  background-color: var(--light-violet-acc);
+  width: max-content;
+  border-radius: var(--subtle);
+  padding: 0.5rem 1rem;
+  align-self: center;
+}
+
+.add-question-type-div > select {
+  border: none;
+  background-color: var(--light-violet-acc);
+  color: var(--violet-acc1);
   font-size: var(--details);
+  border-radius: var(--subtle);
+  text-align: center;
+}
+
+.add-question-type-div > .add-question-button {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0.25rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: var(--light-violet-acc);
+  font-size: var(--details);
+  color: var(--violet-acc1);
 }
 
 /* * ACTION BUTTONS DIV */
@@ -310,7 +414,7 @@ main {
   margin-left: auto;
 }
 
-/* * INPUT SUBMIT AND BUTTON */
+/* * INPUT SAVE AND CANCEL BUTTON */
 .add-update-buttons-div > * {
   padding: 1rem;
   border-radius: var(--semi);
@@ -329,4 +433,63 @@ main {
 .add-update-buttons-div > button {
   color: white;
   background-color: var(--gray);
+}
+
+/* * QUIZ DETAILS */
+.quiz-details-div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  background-color: var(--light-violet-acc);
+  padding: 1rem;
+  border-radius: var(--semi);
+  color: var(--violet-acc1);
+}
+
+.quiz-details-div > div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+}
+
+.quiz-details-div > div > p {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.quiz-details-div > div > *:not(:first-child) {
+  padding: 0.5rem 1rem;
+  background-color: var(--light-gray);
+  border-radius: var(--subtle);
+  border: none;
+  color: black;
+  font-size: 1rem;
+}
+
+/* * ANSWER MARKED AS INCORRECT OR CORRECT DIV */
+.student-mark-div {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.student-mark-div > span {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: var(--semi);
+}
+
+.unmarked-answer {
+  color: var(--dark-gray);
+}
+
+.correct-mark-button {
+  color: var(--green-acc);
+  background-color: var(--light-green-acc);
+}
+
+.incorrect-mark-button {
+  color: var(--red-acc);
+  background-color: var(--light-red-acc);
 }

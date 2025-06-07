@@ -54,107 +54,26 @@
           <!-- * SEARCH FILTER CONTAINER -->
           <div class="search-filter-container">
             <div class="input-search-div">
-              <input type="text" id="" name="" placeholder="Search" />
+              <input
+                type="text"
+                id="searchInput"
+                name="searchInput"
+                placeholder="Search"
+              />
               <span class="material-symbols-outlined"> search </span>
             </div>
             <div class="select-filter-div">
-              <select name="" id="" class="custom-select">
-                <option value="">-- Subjects --</option>
-                <option value="">All Subjects</option>
-                <option value="">Intermediate Programming</option>
-                <option value="">Object Oriented Programming</option>
-                <option value="">Data Structures and Algorithm</option>
-              </select>
+              <select
+                name="filter-subject"
+                id="filter-subject"
+                class="custom-select"
+              ></select>
             </div>
           </div>
         </div>
 
         <!-- * quizzes container -->
-        <div class="upcoming-quizzes-div">
-          <!-- * indiv quiz -->
-          <div class="quiz">
-            <div class="quiz-header">
-              <div class="icon-circle">
-                <span class="material-symbols-outlined"> quiz </span>
-              </div>
-              <div class="quiz-date">May 25 2025</div>
-            </div>
-            <h2>Quiz For Freshmen</h2>
-            <p class="quiz-subject">Intermediate Programming</p>
-            <div class="divider-line"></div>
-            <div class="quiz-footer">
-              <button class="take-quiz-button" id="takeQuiz1Btn">
-                Take Soon
-              </button>
-              <div class="quiz-time-limit">
-                <span class="material-symbols-outlined"> history </span>
-                <p>3h 20m</p>
-              </div>
-            </div>
-          </div>
-          <!-- * indiv quiz -->
-          <div class="quiz">
-            <div class="quiz-header">
-              <div class="icon-circle">
-                <span class="material-symbols-outlined"> quiz </span>
-              </div>
-              <div class="quiz-date">May 25 2025</div>
-            </div>
-            <h2>Quiz For Freshmen</h2>
-            <p class="quiz-subject">Intermediate Programming</p>
-            <div class="divider-line"></div>
-            <div class="quiz-footer">
-              <button class="take-quiz-button" id="takeQuiz1Btn">
-                Take Soon
-              </button>
-              <div class="quiz-time-limit">
-                <span class="material-symbols-outlined"> history </span>
-                <p>3h 20m</p>
-              </div>
-            </div>
-          </div>
-          <!-- * indiv quiz -->
-          <div class="quiz">
-            <div class="quiz-header">
-              <div class="icon-circle">
-                <span class="material-symbols-outlined"> quiz </span>
-              </div>
-              <div class="quiz-date">May 25 2025</div>
-            </div>
-            <h2>Quiz For Freshmen</h2>
-            <p class="quiz-subject">Intermediate Programming</p>
-            <div class="divider-line"></div>
-            <div class="quiz-footer">
-              <button class="take-quiz-button" id="takeQuiz1Btn">
-                Take Soon
-              </button>
-              <div class="quiz-time-limit">
-                <span class="material-symbols-outlined"> history </span>
-                <p>3h 20m</p>
-              </div>
-            </div>
-          </div>
-          <!-- * indiv quiz -->
-          <div class="quiz">
-            <div class="quiz-header">
-              <div class="icon-circle">
-                <span class="material-symbols-outlined"> quiz </span>
-              </div>
-              <div class="quiz-date">May 25 2025</div>
-            </div>
-            <h2>Quiz For Freshmen</h2>
-            <p class="quiz-subject">Intermediate Programming</p>
-            <div class="divider-line"></div>
-            <div class="quiz-footer">
-              <button class="take-quiz-button" id="takeQuiz1Btn">
-                Take Soon
-              </button>
-              <div class="quiz-time-limit">
-                <span class="material-symbols-outlined"> history </span>
-                <p>3h 20m</p>
-              </div>
-            </div>
-          </div>
+        <div class="upcoming-quizzes-div" id="upcoming-quizzes-div">
           <!-- * indiv quiz -->
           <div class="quiz">
             <div class="quiz-header">
@@ -178,8 +97,8 @@
           </div>
         </div>
 
-         <!-- * PAGINATION -->
-         <div class="pagination-container">
+        <!-- * PAGINATION -->
+        <!-- <div class="pagination-container">
           <div class="pagination-icons-div">
             <span class="material-symbols-outlined"> chevron_left </span>
           </div>
@@ -191,14 +110,17 @@
           <div class="pagination-icons-div">
             <span class="material-symbols-outlined"> chevron_right </span>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
 
     <div id="toast-container">
       <div class="toast">
         <div class="message-div">
-          <p class="message" id="message">This is the message Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, cupiditate!</p>
+          <p class="message" id="message">
+            This is the message Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Dolorum, cupiditate!
+          </p>
         </div>
         <div class="line"></div>
         <div class="button-options">

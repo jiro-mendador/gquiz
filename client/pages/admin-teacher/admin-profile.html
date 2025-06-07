@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DASHBOARD - GQUIZ</title>
+    <title>Profile - GQUIZ</title>
     <!-- * ICONS -->
     <link
       rel="stylesheet"
@@ -15,10 +15,7 @@
     <link rel="stylesheet" href="../../styles/toast.css" />
     <link rel="stylesheet" href="../../styles/pagination.css" />
     <link rel="stylesheet" href="../../styles/side-nav.css" />
-    <link rel="stylesheet" href="../../styles/admin-dashboard.css" />
-
-    <!-- * FOR CHARTS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../../styles/profile.css" />
   </head>
   <body>
     <!-- * HEADER -->
@@ -35,7 +32,7 @@
     <main>
       <!-- * SIDE NAV -->
       <nav>
-        <div class="selected" id="homeNavButton">
+        <div class="" id="homeNavButton">
           <span class="material-symbols-outlined"> home </span>
           <p>Dashboard</p>
         </div>
@@ -72,11 +69,7 @@
           <span class="material-symbols-outlined"> check_circle </span>
           <p>Submissions</p>
         </div>
-        <div class="" id="">
-          <span class="material-symbols-outlined"> analytics </span>
-          <p>Reports</p>
-        </div>
-        <div class="" id="profileNavButton">
+        <div class="selected" id="profileNavButton">
           <span class="material-symbols-outlined"> person </span>
           <p>My Profile</p>
         </div>
@@ -85,75 +78,98 @@
       <!-- * MAIN SECTION -->
       <div class="main-div-section">
         <!-- * PAGE TITLE -->
-        <p class="page-title">Dashboard</p>
+        <p class="page-title">User Profile</p>
 
-        <!-- * OVERALL COUNTS -->
-        <div class="overall-counts-div">
-          <div class="overall-count">
-            <p><span class="material-symbols-outlined"> groups </span>Users</p>
-            <p>100</p>
+        <!-- * FULL NAME AND OTHER INFO -->
+        <div class="user-initial-fullname-div">
+          <div class="user-initial-div">
+            <p>JM</p>
           </div>
-          <div class="overall-count">
-            <p>
-              <span class="material-symbols-outlined"> shield_person </span
-              >Admins
-            </p>
-            <p>100</p>
-          </div>
-          <div class="overall-count">
-            <p>
-              <span class="material-symbols-outlined"> school </span>Teachers
-            </p>
-            <p>100</p>
-          </div>
-          <div class="overall-count">
-            <p>
-              <span class="material-symbols-outlined"> school </span>Students
-            </p>
-            <p>100</p>
-          </div>
-        </div>
-
-        <!-- * CHARTS -->
-        <div class="charts-div">
-          <div class="chart-container">
-            <p>Total Quiz vs Submission</p>
-            <canvas id="barChart"></canvas>
-          </div>
-          <div class="dough-other-counts-div">
-            <div class="chart-container-dough">
-              <p>Students Per Course</p>
-              <canvas id="doughnutChart"></canvas>
+          <div class="fullname-other-info">
+            <div class="fullname-email-div">
+              <p class="">Jiro G. Mendador <span>Student</span></p>
+              <p class="">@jiromendador@gmail.com</p>
             </div>
-            <div class="other-counts-div">
-              <div class="other-count">
-                <p>
-                  <span class="material-symbols-outlined"> book </span>Courses
-                </p>
-                <p>100</p>
-              </div>
-              <div class="other-count">
-                <p>
-                  <span class="material-symbols-outlined"> topic </span>Subjects
-                </p>
-                <p>100</p>
-              </div>
-              <div class="other-count">
-                <p>
-                  <span class="material-symbols-outlined"> quiz </span>Quizzes
-                </p>
-                <p>100</p>
-              </div>
-              <div class="other-count">
-                <p>
-                  <span class="material-symbols-outlined"> check_circle </span
-                  >Submissions
-                </p>
-                <p>100</p>
-              </div>
+            <div class="student-section-year-div">
+              <p class="">4th Year</p>
+              <p class="">Section A</p>
             </div>
           </div>
         </div>
+
+        <!-- * EDIT INFO -->
+        <form class="user-information-form">
+          <div class="user-information-input-div">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              value="First"
+              required
+              disabled
+            />
+          </div>
+          <div class="user-information-input-div">
+            <label for="middleName">Middle Name</label>
+            <input
+              type="text"
+              name="middleName"
+              id="middleName"
+              value="Middle"
+              required
+              disabled
+            />
+          </div>
+          <div class="user-information-input-div">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              name="middleName"
+              id="lastName"
+              value="Last"
+              required
+              disabled
+            />
+          </div>
+          <div class="user-information-input-div">
+            <label for="username">Username</label>
+            <input
+              type="username"
+              name="username"
+              id="username"
+              value="username"
+              required
+              disabled
+            />
+          </div>
+          <div class="user-information-input-div">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value="email"
+              required
+              disabled
+            />
+          </div>
+          <div class="user-information-input-div">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value=""
+              disabled
+            />
+          </div>
+          <!-- * ACTIONS -->
+          <div class="profile-action-button-div">
+            <button id="editProfileButton">Edit</button>
+            <button id="saveProfileButton">Save</button>
+          </div>
+        </form>
       </div>
     </main>
 
@@ -173,7 +189,6 @@
         </div>
       </div>
     </div>
-
-    <script src="../../scripts/adminDashboard.js" type="module"></script>
+    <script src="../../scripts/profile.js" type="module"></script>
   </body>
 </html>

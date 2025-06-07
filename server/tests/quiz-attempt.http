@@ -2,18 +2,18 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All 
-GET {{baseUrl}}/quiz-attempt
+GET {{baseUrl}}/quiz-attempt?score=18&quiz=7
 
 ### * CREATE 
 POST {{baseUrl}}/quiz-attempt
 Content-Type: application/json
 
 {
-  "submission": 2,
-  "quiz": 1,
-  "question": 1,
-  "student": 1,
-  "answer": 1
+  "submission": 1,
+  "quiz": 7,
+  "question": 2,
+  "student": 17,
+  "answer": 3
 }
 
 ### * UPDATE (u cant update without the whole required fields!)

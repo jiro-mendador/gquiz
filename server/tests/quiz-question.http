@@ -7,6 +7,14 @@ GET {{baseUrl}}/quiz-question?quiz=3
 ### * Get All 
 GET {{baseUrl}}/quiz-question
 
+### ! GENERATED QUESTION
+POST {{baseUrl}}/generate
+Content-Type: application/json
+
+{
+  "prompt": "Generate 2 questions about religion with choices and correct answer"
+}
+
 ### * CREATE 
 POST {{baseUrl}}/quiz-question
 Content-Type: application/json

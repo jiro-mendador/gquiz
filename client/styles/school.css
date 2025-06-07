@@ -166,25 +166,18 @@ main {
 .custom-table-data > div {
   width: 100%;
   max-width: 10rem;
-  /* overflow-x: auto; */
   overflow: hidden;
-  /* padding-bottom: 1rem; */
 
   display: flex;
   align-items: center;
 }
+
 .custom-table-data > div > span {
-  /* font-size: 1rem; */
   font-size: var(--details);
 }
 
-/* * EMAIL COL */
-.custom-table-data > div:nth-of-type(4) {
-  color: var(--violet-acc1);
-}
-
-/* * ROLE COL SPAN ACTUAL VALUE */
-.custom-table-data > div:nth-of-type(5) > span {
+/* * TEACHER COL SPAN ACTUAL VALUE */
+.custom-table#teacherTable .custom-table-data > div:nth-of-type(3) > span {
   background-color: var(--light-violet-acc);
   color: var(--violet-acc1);
   padding: 0.5rem 1rem;
@@ -192,7 +185,7 @@ main {
 }
 
 /* * ACTION BUTTONS COL */
-.custom-table-data > div:nth-of-type(6) {
+.custom-table-data > div:last-child {
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
@@ -200,7 +193,7 @@ main {
   cursor: pointer;
 }
 
-.custom-table-data > div:nth-of-type(6) > span {
+.custom-table-data > div:last-child > span {
   flex: 1;
   text-align: center;
   padding: 0.5rem;
@@ -209,19 +202,19 @@ main {
 }
 
 /* * EDIT BUTTON */
-.custom-table-data > div:nth-of-type(6) > span:nth-of-type(1) {
+.custom-table-data > div:last-child > span:nth-of-type(1) {
   background-color: var(--light-green-acc);
   color: var(--green-acc);
 }
 
 /* * DELETE BUTTON */
-.custom-table-data > div:nth-of-type(6) > span:nth-of-type(2) {
+.custom-table-data > div:last-child > span:nth-of-type(2) {
   background-color: var(--light-red-acc);
   color: var(--red-acc);
 }
 
-/* * OVERLAY OF ADD/UPDATE USER DIV */
-.add-update-user-div {
+/* * OVERLAY OF ADD/UPDATE DIV */
+.add-update-div {
   position: fixed;
   top: 0;
   left: 0;
@@ -236,7 +229,7 @@ main {
 }
 
 /* * ACTUAL FORM THAT SERVERS AS CONTAINER */
-#addUpdateUserForm {
+#addUpdateForm {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -252,7 +245,7 @@ main {
 }
 
 /* * FORM TITLE */
-#addUpdateUserForm > p {
+#addUpdateForm > p {
   font-weight: 700;
   font-size: var(--normal);
   color: var(--violet-acc1);
@@ -317,4 +310,13 @@ main {
 .add-update-buttons-div > button {
   color: white;
   background-color: var(--gray);
+}
+
+#YearSectionInputs,
+#CourseInputs,
+#SubjectInputs,
+#YearSectionTable,
+#CourseTable,
+#SubjectTable {
+  display: none;
 }

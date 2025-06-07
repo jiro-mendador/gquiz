@@ -57,22 +57,23 @@ class Subject(models.Model):
     subject_code = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=150)
     teacher = models.ForeignKey(User, limit_choices_to={'role': 'teacher'}, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, default="")
+    year = models.CharField(max_length=50, default="")
 
     def __str__(self):
         return self.subject_code
       
     class Meta:
-        unique_together = ('subject_code', 'teacher')
+        unique_together = ('subject_code', 'teacher', 'course')
 
 
-class StudentCourseYearSectionSubject(models.Model):
+class StudentCourseYearSection(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     year_section = models.ForeignKey(YearSection, on_delete=models.CASCADE)
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     student = models.ForeignKey(User, limit_choices_to={'role': 'student'}, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.course} - {self.year_section} - {self.subject}"
+        return f"{self.course} - {self.year_section}"
 
 class Quiz(models.Model):
     # time_limit_minutes = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(180)])
@@ -94,7 +95,7 @@ class QuizQuestion(models.Model):
         ('multiple_choice', 'Multiple Choice'),
         ('true_false', 'True/False'),
         ('identification', 'Identification'),
-        ('essay', 'Essay'),
+        # ('essay', 'Essay'),
     )
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question = models.TextField(unique=True)
@@ -128,6 +129,7 @@ class QuizAttempt(models.Model):
     question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE)
     student = models.ForeignKey(User, limit_choices_to={'role': 'student'}, on_delete=models.CASCADE)
     answer = models.ForeignKey(QuizChoice, null=True, blank=True, on_delete=models.SET_NULL)
+    input_answer = models.TextField(null=True, default="")
     attempt_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

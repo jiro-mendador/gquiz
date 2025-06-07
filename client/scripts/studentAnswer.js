@@ -1,10 +1,28 @@
 import {
   applyMainSectionMargin,
   applyQuizQuestionMargin,
+  clear,
   navigate,
+  getTimeSpan,
 } from "../scripts/utils.js";
 
-window.addEventListener("DOMContentLoaded", () => {
+import showToast from "./toast.js";
+import myAxios from "./request.js";
+import API from "./API.js";
+
+window.addEventListener("DOMContentLoaded", async () => {
+  // * CHECK IF THE USER IS STILL LOGGED IN
+  const CURRENT_USER_ID = localStorage.getItem("gquizCurrentUserId");
+  if (CURRENT_USER_ID === null && CURRENT_USER_ID === undefined) {
+    navigate("./index.html");
+  }
+
+  // ! CHECK FIRST IF THE USER CLICKS A QUIZ
+  let reviewingQuizId = localStorage.getItem("reviewingQuizId");
+  if (!reviewingQuizId) {
+    onCancelQuiz();
+  }
+
   // * STYLINGS
   applyMainSectionMargin();
   applyQuizQuestionMargin();
@@ -58,6 +76,7 @@ window.addEventListener("DOMContentLoaded", () => {
   cancelQuizButton.addEventListener("click", onCancelQuiz);
 
   function onCancelQuiz() {
+    localStorage.removeItem("reviewingQuizId");
     navigate("./student-response-history.html");
   }
 });

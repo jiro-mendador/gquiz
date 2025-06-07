@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SCHOOL - GQUIZ</title>
+    <!-- * ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,analytics,arrow_drop_down,arrow_drop_up,book,check_circle,chevron_left,chevron_right,delete,edit,event,groups,history,home,pending_actions,person,quiz,school,search,shield_person,topic"
+    />
+
+    <!-- * STYLES -->
+    <link rel="stylesheet" href="../../styles/header.css" />
+    <link rel="stylesheet" href="../../styles/toast.css" />
+    <link rel="stylesheet" href="../../styles/pagination.css" />
+    <link rel="stylesheet" href="../../styles/side-nav.css" />
+    <link rel="stylesheet" href="../../styles/title-search-filter.css" />
+    <link rel="stylesheet" href="../../styles/school.css" />
+
+    <!-- * FOR CHARTS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- * HEADER -->
+    <header>
+      <div class="logo-div">
+        <p>GQUIZ</p>
+      </div>
+      <div class="header-buttons">
+        <button class="log-in-button" id="header-login-button">LOG OUT</button>
+      </div>
+    </header>
+
+    <!-- * MAIN -->
+    <main>
+      <!-- * SIDE NAV -->
+      <nav>
+        <div class="" id="homeNavButton">
+          <span class="material-symbols-outlined"> home </span>
+          <p>Dashboard</p>
+        </div>
+        <div class="" id="">
+          <span class="material-symbols-outlined"> groups </span>
+          <p>Users</p>
+        </div>
+        <!-- * INNER NAV WITH CHILDREN -->
+        <div class="selected" id="side-nav-has-children">
+          <span class="material-symbols-outlined"> school </span>
+          <p>School</p>
+          <span class="material-symbols-outlined" id="arrow-span">
+            arrow_drop_up
+          </span>
+          <!-- * CHILDREN -->
+          <div id="inner-header-dropdown">
+            <div class="">
+              <span class="material-symbols-outlined"> event </span>
+              <p>Year & Section</p>
+            </div>
+            <div>
+              <span class="material-symbols-outlined"> book </span>
+              <p>Courses</p>
+            </div>
+            <div>
+              <span class="material-symbols-outlined"> topic </span>
+              <p>Subjects</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="material-symbols-outlined"> quiz </span>
+          <p>Quizzes</p>
+        </div>
+        <div>
+          <span class="material-symbols-outlined"> check_circle </span>
+          <p>Submissions</p>
+        </div>
+        <div class="" id="profileNavButton">
+          <span class="material-symbols-outlined"> person </span>
+          <p>My Profile</p>
+        </div>
+      </nav>
+
+      <!-- * MAIN SECTION -->
+      <div class="main-div-section">
+        <!-- * TITLE SEARCH FILTER -->
+        <div class="page-title-search-filter">
+          <div class="page-title-add-button-div">
+            <p>School</p>
+            <button id="addNewButton">
+              <span class="material-symbols-outlined"> add </span>
+              Add New
+            </button>
+          </div>
+          <!-- * SEARCH FILTER CONTAINER -->
+          <div class="search-filter-container">
+            <div class="input-search-div">
+              <input
+                type="text"
+                id="searchInput"
+                name="searchInput"
+                placeholder="Search"
+              />
+              <span class="material-symbols-outlined"> search </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- * TABLE YEAR SECTION -->
+        <div class="custom-table" id="YearSectionTable">
+          <!-- * TABLE HEADERS -->
+          <div class="custom-table-header">
+            <div>Year</div>
+            <div>Section</div>
+            <div>Actions</div>
+          </div>
+          <!-- * TABLE ROWS -->
+          <div class="custom-table-rows">
+            <!-- * TABLE DATA -->
+            <!-- <div class="custom-table-data">
+              <div><span>1</span></div>
+              <div><span>A</span></div>
+              <div>
+                <span class="material-symbols-outlined">edit</span>
+                <span class="material-symbols-outlined">delete</span>
+              </div>
+            </div> -->
+          </div>
+        </div>
+
+        <!-- * TABLE COURSES -->
+        <div class="custom-table" id="CourseTable">
+          <!-- * TABLE HEADERS -->
+          <div class="custom-table-header">
+            <div>Course Name</div>
+            <div>Actions</div>
+          </div>
+          <!-- * TABLE ROWS -->
+          <div class="custom-table-rows">
+            <!-- * TABLE DATA -->
+            <div class="custom-table-data">
+              <div><span>BSCS</span></div>
+              <div>
+                <span class="material-symbols-outlined">edit</span>
+                <span class="material-symbols-outlined">delete</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- * TABLE SUBJECTS -->
+        <div class="custom-table" id="SubjectTable">
+          <!-- * TABLE HEADERS -->
+          <div class="custom-table-header">
+            <div>Subject Code</div>
+            <div>Description</div>
+            <div>Teacher</div>
+            <div>Course</div>
+            <div>Actions</div>
+          </div>
+          <!-- * TABLE ROWS -->
+          <div class="custom-table-rows">
+            <!-- * TABLE DATA -->
+            <!-- <div class="custom-table-data">
+              <div><span>CCS 101</span></div>
+              <div><span>Intermediate Programming</span></div>
+              <div><span>Mr. Sample Last Name</span></div>
+              <div>
+                <span class="material-symbols-outlined">edit</span>
+                <span class="material-symbols-outlined">delete</span>
+              </div>
+            </div> -->
+          </div>
+        </div>
+
+        <!-- * PAGINATION -->
+        <!-- <div class="pagination-container">
+          <div class="pagination-icons-div">
+            <span class="material-symbols-outlined"> chevron_left </span>
+          </div>
+          <div class="pagination-numbers">
+            <button class="selected-page">1</button>
+            <button>2</button>
+            <button>3</button>
+          </div>
+          <div class="pagination-icons-div">
+            <span class="material-symbols-outlined"> chevron_right </span>
+          </div>
+        </div> -->
+      </div>
+    </main>
+
+    <!-- * ADD/UPDATE -->
+    <div class="add-update-div" id="addUpdateDiv">
+      <form id="addUpdateForm">
+        <p>Add</p>
+        <!-- * YEAR SECTION -->
+        <div class="add-update-inputs-div" id="YearSectionInputs">
+          <div>
+            <label for="year">Year</label>
+            <input type="number" name="year" id="year" />
+          </div>
+          <div>
+            <label for="section">Section</label>
+            <input type="text" name="section" id="section" />
+          </div>
+          <div class="add-update-buttons-div">
+            <button id="cancelAddEditYearSectionButton">Cancel</button>
+            <input type="submit" value="Save" />
+          </div>
+        </div>
+
+        <!-- * COURSE -->
+        <div class="add-update-inputs-div" id="CourseInputs">
+          <div>
+            <label for="course">Course</label>
+            <input type="text" name="course" id="course" />
+          </div>
+          <div class="add-update-buttons-div">
+            <button id="cancelAddEditCourseButton">Cancel</button>
+            <input type="submit" value="Save" />
+          </div>
+        </div>
+
+        <!-- * SUBJECT -->
+        <div class="add-update-inputs-div" id="SubjectInputs">
+          <div>
+            <label for="subjectCode">Code</label>
+            <input type="text" name="subjectCode" id="subjectCode" />
+          </div>
+          <div>
+            <label for="subjectDescription">Description</label>
+            <input
+              type="text"
+              name="subjectDescription"
+              id="subjectDescription"
+            />
+          </div>
+          <div>
+            <label for="teacher">Teacher</label>
+            <select name="teacher" id="teacher"></select>
+          </div>
+          <div>
+            <label for="subject-course">Course</label>
+            <select name="course" id="subject-course"></select>
+          </div>
+          <div>
+            <label for="subject-year">Year</label>
+            <select name="subject-year" id="subject-year"></select>
+          </div>
+          <div class="add-update-buttons-div">
+            <button id="cancelAddEditSubjectButton">Cancel</button>
+            <input type="submit" value="Save" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- * TOAST -->
+    <div id="toast-container">
+      <div class="toast">
+        <div class="message-div">
+          <p class="message" id="message">
+            This is the message Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Dolorum, cupiditate!
+          </p>
+        </div>
+        <div class="line"></div>
+        <div class="button-options">
+          <button class="cancel" id="cancelButton">CANCEL</button>
+          <button class="proceed" id="proceedButton">PROCEED</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../scripts/school.js" type="module"></script>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All 
-GET {{baseUrl}}/user
+GET {{baseUrl}}/user?role=teacher
 
 ### * LOGIN 
 POST {{baseUrl}}/user/login
