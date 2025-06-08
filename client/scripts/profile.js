@@ -85,6 +85,22 @@ window.addEventListener("DOMContentLoaded", async () => {
                 ".student-section-year-div"
               );
               studentYearSectionDiv.style.display = "flex";
+
+              let course = await otherData(
+                `course?id=${response.data.extra.course_year_section[0].course}`
+              );
+
+              let year_section = await otherData(
+                `year-section?student=${response.data.extra.course_year_section[0].year_section}`
+              );
+
+              studentYearSectionDiv.querySelector(
+                "p:nth-child(1)"
+              ).textContent = course[0].name;
+
+              studentYearSectionDiv.querySelector(
+                "p:nth-child(2)"
+              ).textContent = `${year_section[0].year} ${year_section[0].section}`;
             }
 
             let profileInputs = document.querySelectorAll(

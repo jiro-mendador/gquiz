@@ -23,15 +23,138 @@ window.addEventListener("DOMContentLoaded", async () => {
   let CURRENT_USER_ID = localStorage.getItem("gquizCurrentUserId");
   let CURRENT_USER_ROLE = localStorage.getItem("gquizCurrentUserRole");
 
+  let barChart;
+  let doughnutChart;
+
+  let filterQuiz = document.getElementById("filter-quiz");
+
+  filterQuiz.addEventListener("change", async (e) => {
+    // * time spent
+    let aveDiv = document.querySelector(
+      ".average-mistake-time-div > div:nth-child(1)"
+    );
+    if (aveDiv) {
+      aveDiv.style.display = filterQuiz.value === "" ? "none" : "block";
+    }
+
+    await getReportsForTeachers(e.target.value);
+  });
+
   // * DOM MANIPULATIONS
   function generateChart(config, id) {
     const context = document.getElementById(id).getContext("2d");
-    new Chart(context, config);
+    return new Chart(context, config);
+  }
+
+  function createTableRow(id, data) {
+    let rowsContainer = document.querySelector(
+      `#commonMistakesTable > div.custom-table-rows`
+    );
+
+    // * create table data here
+    const tableDataDiv = document.createElement("div");
+    tableDataDiv.className = "custom-table-data";
+    tableDataDiv.dataset.id = id;
+
+    // * the actual data
+    data.forEach((col) => {
+      const dataDiv = document.createElement("div");
+      const dataSpan = document.createElement("span");
+      dataSpan.textContent = col;
+      dataDiv.appendChild(dataSpan);
+      tableDataDiv.appendChild(dataDiv);
+    });
+
+    rowsContainer.appendChild(tableDataDiv);
+  }
+
+  function resetContainers() {
+    if (barChart) {
+      barChart.destroy();
+    }
+    if (doughnutChart) {
+      doughnutChart.destroy();
+    }
+
+    let aveDiv = document.querySelector(
+      ".average-mistake-time-div > div:nth-child(1)"
+    );
+    if (aveDiv) {
+      aveDiv.style.display = filterQuiz.value === "" ? "none" : "block";
+    }
+
+    document.getElementById("barChart").innerHTML = "";
+    document.getElementById("doughnutChart").innerHTML = "";
+    document.querySelector(
+      "#commonMistakesTable > div.custom-table-rows"
+    ).innerHTML = "";
+  }
+
+  async function checkUserRole() {
+    let overall = document.getElementById("overall-count");
+    let doughtOther = document.getElementById("dough-other-chart");
+    let teacher = document.getElementById("teachers-div");
+    let searchQuizDiv = document.getElementById("searchQuizDiv");
+    if (CURRENT_USER_ROLE === "admin") {
+      overall.style.display = "flex";
+      doughtOther.style.display = "flex";
+      teacher.style.display = "none";
+      searchQuizDiv.style.display = "none";
+      await getAll("", "", "admin");
+    } else {
+      overall.style.display = "none";
+      doughtOther.style.display = "none";
+      teacher.style.display = "flex";
+      searchQuizDiv.style.display = "flex";
+      await populateSelectElement(
+        null,
+        "filter-quiz",
+        `quiz?teacher=${CURRENT_USER_ID}`
+      );
+
+      await getReportsForTeachers(filterQuiz.value);
+    }
+  }
+
+  async function populateSelectElement(
+    selected = null,
+    selectId,
+    routeNameAndParams
+  ) {
+    // * populate teacher select
+    let select = document.querySelector(`#${selectId}`);
+    select.innerHTML = "";
+
+    let data = await otherData(routeNameAndParams);
+
+    let defOption = document.createElement("option");
+    defOption.textContent = "-- Quizzes --";
+    defOption.value = "";
+    select.appendChild(defOption);
+
+    data.data.forEach((forData) => {
+      let option = document.createElement("option");
+      console.log(forData);
+
+      option.textContent = forData.title;
+      option.value = forData.id;
+      console.log("OPTION: ", forData);
+
+      select.appendChild(option);
+    });
+
+    // * set it as selected
+    if (selected) {
+      select.value = selected;
+    } else {
+      select.selectedIndex = 0;
+    }
   }
 
   // * API CALLS
   async function getAll(id = "", role = "", reports = "") {
     try {
+      resetContainers();
       const response = await myAxios.get(
         `${API}/user?id=${id}&role=${role}&reports=${reports}`
       );
@@ -89,7 +212,10 @@ window.addEventListener("DOMContentLoaded", async () => {
         });
 
         // * doughnut chart
-        generateChart(
+        if (doughnutChart) {
+          doughnutChart.destroy();
+        }
+        doughnutChart = generateChart(
           {
             type: "doughnut",
             data: {
@@ -120,9 +246,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         let failedStudents = [];
 
         for (let i = 1; i <= 12; i++) {
-          let month = "";
-          month += i <= 9 ? "0" : month;
-          month += i;
+          let month = i <= 9 ? "0" + i : i.toString();
           passedStudents.push(monthlyResults[`${selectedYear}-${month}`].pass);
           failedStudents.push(monthlyResults[`${selectedYear}-${month}`].fail);
         }
@@ -182,7 +306,10 @@ window.addEventListener("DOMContentLoaded", async () => {
           },
         };
 
-        generateChart(config, "barChart");
+        if (barChart) {
+          barChart.destroy();
+        }
+        barChart = generateChart(config, "barChart");
       }
     } catch (ex) {
       console.log(ex);
@@ -214,5 +341,126 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  await getAll("", "", "admin");
+  // * for teacher
+  async function getReportsForTeachers(quiz = "") {
+    try {
+      resetContainers();
+      const response = await myAxios.get(
+        `${API}/quiz-report?reports=teacher&quiz=${quiz}&user=${CURRENT_USER_ID}`
+      );
+      console.log(response.data);
+
+      if (response.data.success) {
+        let teacherReports = response.data;
+
+        // * time spent
+        document.getElementById("average-time-spent").textContent =
+          teacherReports?.average_time_minutes[quiz]?.average_minutes +
+          " minutes";
+
+        // * common mistakes
+        const commonMistakes = teacherReports?.common_mistakes;
+
+        for (const question in commonMistakes) {
+          if (Object.hasOwnProperty.call(commonMistakes, question)) {
+            const mistake = commonMistakes[question];
+            createTableRow(question, [
+              mistake["question_text"],
+              mistake["correct_answer"],
+              mistake["common_wrong_answer"],
+              mistake["%wrong"],
+              mistake["misconception"],
+            ]);
+          }
+        }
+
+        // * BAR CHART
+        const selectedYear = new Date().getFullYear();
+        console.log(selectedYear);
+
+        document.querySelector("#currentYearSpan").textContent = selectedYear;
+
+        // * construct monthly pass data
+        let monthlyResults = teacherReports.monthly_results_summary;
+        console.log("PASS FAIL", monthlyResults);
+        let passedStudents = [];
+        let failedStudents = [];
+
+        for (let i = 1; i <= 12; i++) {
+          let month = i <= 9 ? "0" + i : i.toString();
+          passedStudents.push(monthlyResults[`${selectedYear}-${month}`].pass);
+          failedStudents.push(monthlyResults[`${selectedYear}-${month}`].fail);
+        }
+
+        console.log("passed : ", passedStudents);
+        console.log("failed : ", failedStudents);
+
+        const labelMonths = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+
+        const data = {
+          labels: labelMonths,
+          datasets: [
+            {
+              label: "Pass",
+              data: passedStudents,
+              backgroundColor: "rgba(112, 71, 253, 0.6)",
+              borderColor: "rgb(112, 71, 253)",
+              borderWidth: 1,
+            },
+            {
+              label: "Fail",
+              data: failedStudents,
+              backgroundColor: "rgba(112, 71, 253, 0.2)", // violet-acc1
+              borderWidth: 1,
+            },
+          ],
+        };
+
+        let config = {
+          type: "bar",
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "top",
+              },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        };
+
+        if (barChart) {
+          barChart.destroy();
+        }
+        barChart = generateChart(config, "barChart");
+      }
+    } catch (ex) {
+      console.log(ex);
+      if (ex.response && ex.response.data && ex.response.data.message) {
+        showToast(ex.response.data.message);
+      } else {
+        showToast("An unexpected error occurred");
+      }
+    }
+  }
+
+  await checkUserRole();
 });

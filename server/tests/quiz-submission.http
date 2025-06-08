@@ -2,7 +2,7 @@
 @baseUrl = http://127.0.0.1:{{port}}
 
 ### * Get All 
-GET {{baseUrl}}/quiz-submission?id=6&quiz=7
+GET {{baseUrl}}/quiz-submission?search=&student=41&subject=
 
 ### * CREATE 
 POST {{baseUrl}}/quiz-submission

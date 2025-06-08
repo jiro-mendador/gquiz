@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from api.serializers import QuizAttemptSerializer
-from api.models import QuizAttempt, QuizChoice
+from api.models import QuizAttempt, QuizChoice, QuizSubmission
 
 from rest_framework.response import Response
 from django.core.paginator import Paginator
@@ -44,6 +44,20 @@ def get(request):
         )
 
     if score_student_id and quiz_id:
+        # Get the QuizSubmission (you might want latest one if multiple)
+        submission = QuizSubmission.objects.filter(
+            student=score_student_id,
+            quiz=quiz_id
+        ).order_by('-submitted_at').first()
+
+        if not submission:
+            return Response({
+                "success": False,
+                "message": "No submission found for this student and quiz."
+            }, status=404)
+
+        submission_id = submission.id
+          
         score_qs = QuizAttempt.objects.select_related('answer').filter(
             student=score_student_id,
             quiz=quiz_id
@@ -71,6 +85,7 @@ def get(request):
             "success": True,
             "message": "Score computed successfully",
             "data": {
+                "submission_id": int(submission_id),
                 "student_id": int(score_student_id),
                 "quiz_id": int(quiz_id),
                 "score": score,

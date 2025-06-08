@@ -137,7 +137,7 @@ main {
   flex-flow: column nowrap;
   gap: 3rem;
 
-  margin-bottom: 10rem;
+  /* margin-bottom: 10rem; */
 }
 
 .chart-container,
@@ -230,4 +230,119 @@ canvas {
   font-weight: 700;
   font-size: var(--title);
   color: var(--violet-acc1);
+}
+
+/* * ADDTIONAL FOR TEACHERS */
+.custom-table {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+/* *CUSTOM HEADERS DIV */
+.custom-table-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background-color: var(--light);
+  padding: 1rem;
+  border-radius: var(--semi);
+}
+
+/* * ACTUAL CUSTOM HEADER */
+.custom-table-header > div {
+  font-size: var(--details);
+  font-weight: 600;
+  width: 100%;
+  max-width: 10rem;
+}
+
+/* *CUSTOM ROWS DIV */
+.custom-table-rows {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.custom-table-data {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-bottom: 2px solid var(--light);
+  border-radius: var(--semi);
+}
+
+.custom-table-data:hover {
+  background-color: var(--light-violet-acc);
+}
+
+/* * ACTUAL DATA PER ROW */
+.custom-table-data > div {
+  width: 100%;
+  max-width: 10rem;
+  /* overflow-x: auto; */
+  overflow: hidden;
+  /* padding-bottom: 1rem; */
+
+  display: flex;
+  align-items: center;
+}
+.custom-table-data > div > span {
+  /* font-size: 1rem; */
+  font-size: var(--details);
+}
+
+/* * EMAIL COL */
+.custom-table-data > div:nth-of-type(4) {
+  color: var(--violet-acc1);
+}
+
+/* * ROLE COL SPAN ACTUAL VALUE */
+.custom-table-data > div:nth-of-type(5) > span {
+  background-color: var(--light-violet-acc);
+  color: var(--violet-acc1);
+  padding: 0.5rem 1rem;
+  border-radius: var(--semi);
+}
+
+.average-mistake-time-div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 3rem;
+}
+
+.average-mistake-time-div > div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+}
+
+.average-mistake-time-div > div > p {
+  font-weight: 600;
+  font-size: var(--normal);
+}
+
+.average-mistake-time-div > div:nth-of-type(1) > div {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.5rem;
+  align-items: center;
+
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--semi);
+
+  background-color: var(--light-violet-acc);
+  color: var(--violet-acc1);
+}
+
+.average-mistake-time-div > div:nth-of-type(1) > div > * {
+  font-size: var(--sub-title);
+  font-weight: 600;
+}
+
+.main-div-section > div:last-child {
+  margin-bottom: 10rem;
 }

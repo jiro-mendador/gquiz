@@ -39,7 +39,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   let progressPercentage = document.getElementById("progress-percentage");
   let progressLevel = document.getElementById("quiz-progress-level");
-  let answeredQuestions = new Set(); // Keeps track of question IDs answered
+  let answeredQuestions = new Set();
   let totalQuestions = 0;
 
   // * events
@@ -51,10 +51,10 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   // * saving quiz
   submitQuizButton.addEventListener("click", () => {
-    // showToast("Are you sure you want to submit your answers?", () => {
-    //   // * call save here
-    // });
-    save();
+    showToast("Are you sure you want to submit your answers?", () => {
+      // * call save here
+      save();
+    });
   });
 
   // * DOM MANIPULATION
@@ -175,7 +175,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         // Add click handler
         choiceDiv.addEventListener("click", () => {
           const qId = choiceDiv.dataset.questionId;
-          
+
           // Unselect others
           const allChoices = choicesContainer.querySelectorAll(
             ".quiz-select-one-choice"
@@ -183,7 +183,7 @@ window.addEventListener("DOMContentLoaded", async () => {
           allChoices.forEach((el) => el.classList.remove("selected"));
           // Select this one
           choiceDiv.classList.add("selected");
-          
+
           answeredQuestions.add(qId);
           updateProgress(totalQuestions);
         });
@@ -239,21 +239,21 @@ window.addEventListener("DOMContentLoaded", async () => {
       if (now < start) {
         display.textContent = "Quiz hasn't started yet";
 
-        // showToast(
-        //   "This quiz cannot be answered yet! You will now be redirected to your homepage shortly."
-        // );
+        showToast(
+          "This quiz cannot be answered yet! You will now be redirected to your homepage shortly."
+        );
 
-        // setTimeout(() => {
-        //   navigate("./dashboard.html");
-        // }, 5000);
+        setTimeout(() => {
+          navigate("./dashboard.html");
+        }, 5000);
       } else if (now > end) {
         display.textContent = "Time is up!";
 
-        // showToast("Time is up! You will be redirected to your homepage!");
+        showToast("Time is up! You will be redirected to your homepage!");
 
-        // setTimeout(() => {
-        //   navigate("./dashboard.html");
-        // }, 5000);
+        setTimeout(() => {
+          navigate("./dashboard.html");
+        }, 5000);
       } else {
         const timeLeft = end - now;
 
@@ -312,7 +312,8 @@ window.addEventListener("DOMContentLoaded", async () => {
           allDetailsParags[1].textContent = quizDetails[0].subject.subject_code;
           allDetailsParags[6].textContent = quizDetails[0].instructions;
 
-          allQuestions.forEach(async (question, index) => {
+          for (let index = 0; index < allQuestions.length; index++) {
+            const question = allQuestions[index];
             console.log("QUESTION FROM DB : ", question);
 
             // * get the choices for that question
@@ -321,7 +322,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             );
             console.log("CHOICES FROM DB : ", choices);
 
-            // * add the question ui 1 by 1
+            // * add the question UI one by one
             document
               .getElementById("quiz-questions-container")
               .appendChild(createQuizQuestionUI(question, choices, index));
@@ -331,7 +332,7 @@ window.addEventListener("DOMContentLoaded", async () => {
               quizDetails[0].quiz_end_date,
               "quiz-timer"
             );
-          });
+          }
         }
       }
     } catch (ex) {
@@ -431,6 +432,11 @@ window.addEventListener("DOMContentLoaded", async () => {
         }
 
         showToast("Quiz answers successfully submitted!");
+        
+        setTimeout(() => {
+          navigate("./dashboard.html");
+        }, 3000);
+        
       }
     } catch (ex) {
       console.log(ex);

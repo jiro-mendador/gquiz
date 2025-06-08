@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../../styles/pagination.css" />
     <link rel="stylesheet" href="../../styles/side-nav.css" />
     <link rel="stylesheet" href="../../styles/admin-dashboard.css" />
+    <link rel="stylesheet" href="../../styles/title-search-filter.css" />
 
     <!-- * FOR CHARTS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -81,10 +82,24 @@
       <!-- * MAIN SECTION -->
       <div class="main-div-section">
         <!-- * PAGE TITLE -->
-        <p class="page-title">Dashboard</p>
+        <div class="page-title-search-filter">
+          <div class="page-title-add-button-div">
+            <p class="page-title">Dashboard</p>
+          </div>
+          <!-- * SEARCH FILTER CONTAINER -->
+          <div class="search-filter-container" id="searchQuizDiv">
+            <div class="select-filter-div">
+              <select
+                name="filter-quiz"
+                id="filter-quiz"
+                class="custom-select"
+              ></select>
+            </div>
+          </div>
+        </div>
 
         <!-- * OVERALL COUNTS -->
-        <div class="overall-counts-div">
+        <div class="overall-counts-div" id="overall-count">
           <div class="overall-count">
             <p><span class="material-symbols-outlined"> groups </span>Users</p>
             <p>100</p>
@@ -113,10 +128,13 @@
         <!-- * CHARTS -->
         <div class="charts-div">
           <div class="chart-container">
-            <p>Pass vs Fail Students Per Month of <span id="currentYearSpan"></span></p>
+            <p>
+              Pass vs Fail Students Per Month of
+              <span id="currentYearSpan"></span>
+            </p>
             <canvas id="barChart"></canvas>
           </div>
-          <div class="dough-other-counts-div">
+          <div class="dough-other-counts-div" id="dough-other-chart">
             <div class="chart-container-dough">
               <p>Students Per Course</p>
               <canvas id="doughnutChart"></canvas>
@@ -146,6 +164,43 @@
                   >Submissions
                 </p>
                 <p>100</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="average-mistake-time-div" id="teachers-div">
+          <div class="average-time-spent-div">
+            <p>Average Time Spent By A Student</p>
+            <div>
+              <span class="material-symbols-outlined"> history </span>
+              <p id="average-time-spent">10:00</p>
+            </div>
+          </div>
+
+          <div>
+            <p>Common Mistakes</p>
+            <div class="custom-table" id="commonMistakesTable">
+              <!-- * TABLE HEADERS -->
+              <div class="custom-table-header">
+                <div>Question</div>
+                <div>Correct Answer</div>
+                <div>Common Wrong Answer</div>
+                <div>%Wrong</div>
+                <div>Misconception</div>
+              </div>
+              <!-- * TABLE ROWS -->
+              <div class="custom-table-rows">
+                <!-- * TABLE DATA -->
+                <!-- <div class="custom-table-data">
+                  <div><span>Sample First Name</span></div>
+                  <div><span>Sample Middle Name</span></div>
+                  <div><span>Sample Last Name</span></div>
+                  <div><span>thisisasampleemail@gmail.com</span></div>
+                  <div>
+                    <span>admin</span>
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>

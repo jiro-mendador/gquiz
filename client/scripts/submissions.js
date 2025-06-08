@@ -12,6 +12,19 @@ window.addEventListener("DOMContentLoaded", async () => {
   // * clear localstorage item to avoid already selected page
   localStorage.removeItem("gQuizInnerSideNavPageOpened");
 
+  const CURRENT_USER_ID = localStorage.getItem("gquizCurrentUserId");
+  if (CURRENT_USER_ID === null && CURRENT_USER_ID === undefined) {
+    navigate("../index.html");
+  }
+
+  const CURRENT_USER_ROLE = localStorage.getItem("gquizCurrentUserRole");
+  if (CURRENT_USER_ROLE === null && CURRENT_USER_ROLE === undefined) {
+    navigate("../index.html");
+  }
+
+  let QUIZ_ADD_PARAMS =
+    CURRENT_USER_ROLE === "teacher" ? `teacher=${CURRENT_USER_ID}` : "/";
+
   // * styles
   applyMainSectionMargin();
 
@@ -342,7 +355,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       }
 
       const response = await myAxios.get(
-        `${API}/quiz-submission?search=${search}&pageNumber=${pageNumber}&id=${id}&quiz=${quiz}&student=${student}`
+        `${API}/quiz-submission?search=${search}&pageNumber=${pageNumber}&id=${id}&quiz=${quiz}&student=${student}&${QUIZ_ADD_PARAMS}`
       );
 
       console.log(response.data);
@@ -658,6 +671,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 
   // await populateSelectElement(null, "quiz-subject", "subject");
-  await populateSelectElement(null, "filter-quiz", "quiz");
+  await populateSelectElement(null, "filter-quiz", `quiz?${QUIZ_ADD_PARAMS}`);
   await getAll();
 });

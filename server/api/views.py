@@ -9,6 +9,7 @@ from .routes.quiz_question_routes import quizQuestionApi
 from .routes.quiz_question_choice_routes import quizQuestionChoiceApi 
 from .routes.quiz_attempt_routes import quizAttemptApi
 from .routes.quiz_submission_routes import quizSubmissionApi
+from .routes.reports_direct_route import get_quiz_report
 # from django.views.decorators.csrf import csrf_exempt
 
 # * FOR AI GENERATED QUESTIONS!
@@ -72,8 +73,12 @@ def quizAttempt(request, id=None):
 def quizSubmission(request, id=None):
   return quizSubmissionApi(request, id)
 
+# * FOR TEACHERS' REPORTS
+@api_view(['GET'])
+def quizReports(request):
+  return get_quiz_report(request)
+
 # * FOR AI GENERATED QUESTIOSN!
-# ! NOT WORKING API KEY
 client = OpenAI(
     api_key="AIzaSyBp3jJOG0rj2KI-Z3tE5F4y-U-sXov7zj8",
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"

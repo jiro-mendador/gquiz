@@ -415,6 +415,11 @@ window.addEventListener("DOMContentLoaded", async () => {
       let year = document.getElementById("year");
       let section = document.getElementById("section");
       let course = document.getElementById("course");
+      let subjectCode = document.getElementById("subjectCode");
+      let subjectDescription = document.getElementById("subjectDescription");
+      let teacher = document.getElementById("teacher");
+      let subjectCourse = document.getElementById("subject-course");
+      let subjectYear = document.getElementById("subject-year");
 
       let dataToUpdate = {};
       switch (innerNavPageOpened) {
@@ -430,6 +435,13 @@ window.addEventListener("DOMContentLoaded", async () => {
           };
           break;
         case "2":
+          dataToUpdate = {
+            subject_code: subjectCode.value,
+            description: subjectDescription.value,
+            teacher: teacher.value,
+            course: subjectCourse.value,
+            year: subjectYear.value,
+          };
           break;
       }
 
@@ -447,6 +459,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         showAddUpdateDiv("none", pageName);
       }
     } catch (ex) {
+      console.log(ex);
       addUpdateForm.removeAttribute("data-id-to-update");
       if (ex.data.errors) {
         const errorMessage = Object.values(ex.data.errors).flat().join(", ");

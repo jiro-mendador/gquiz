@@ -13,6 +13,19 @@ window.addEventListener("DOMContentLoaded", async () => {
   // * clear localstorage item to avoid already selected page
   localStorage.removeItem("gQuizInnerSideNavPageOpened");
 
+  const CURRENT_USER_ID = localStorage.getItem("gquizCurrentUserId");
+  if (CURRENT_USER_ID === null && CURRENT_USER_ID === undefined) {
+    navigate("../index.html");
+  }
+
+  const CURRENT_USER_ROLE = localStorage.getItem("gquizCurrentUserRole");
+  if (CURRENT_USER_ROLE === null && CURRENT_USER_ROLE === undefined) {
+    navigate("../index.html");
+  }
+
+  let SUBJECT_ADD_PARAMS =
+    CURRENT_USER_ROLE === "teacher" ? `teacher=${CURRENT_USER_ID}` : "/";
+
   // * styles
   applyMainSectionMargin();
 
@@ -594,7 +607,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       }
 
       const response = await myAxios.get(
-        `${API}/quiz?search=${search}&pageNumber=${pageNumber}&id=${id}&subject=${subject}`
+        `${API}/quiz?search=${search}&pageNumber=${pageNumber}&id=${id}&subject=${subject}&${SUBJECT_ADD_PARAMS}`
       );
 
       console.log(response.data);
@@ -637,7 +650,7 @@ window.addEventListener("DOMContentLoaded", async () => {
           await populateSelectElement(
             allData[0].subject.id,
             "quiz-subject",
-            "subject"
+            `subject?${SUBJECT_ADD_PARAMS}`
           );
 
           // * get all the quiz questions from the database
@@ -891,6 +904,7 @@ window.addEventListener("DOMContentLoaded", async () => {
           It should be ${promptItems.value} questions. 
           The quiz subject is about ${promptSubject.value}. 
           The quiz difficulty is ${promptDifficultyLevel.value}.
+          NOTE! : DONT USE SPECIAL CHARACTERS JUST USE WORDS TO DESCRIBE IT.
           NOTE! : if question_type is identification STILL create choices array with one choice and is_correct = true.
           NOTE! : if question_type is true_false, set choice as "true" or "false" and not "True" or "False".
           NOTE! : if question_type is true_false STILL create choice for true or false even if it is not the correct answer just set is_correct = false.
@@ -943,8 +957,18 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  await populateSelectElement(null, "quiz-subject", "subject");
-  await populateSelectElement(null, "filter-subject", "subject");
+  await populateSelectElement(
+    null,
+    "quiz-subject",
+    `subject?${SUBJECT_ADD_PARAMS}`
+  );
+
+  await populateSelectElement(
+    null,
+    "filter-subject",
+    `subject?${SUBJECT_ADD_PARAMS}`
+  );
+
   await getAll();
 
   clear(window, () => {

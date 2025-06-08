@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../styles/student-answer.css" />
+    <link rel="stylesheet" href="../styles/toast.css" />
   </head>
   <body>
     <!-- * HEADER -->
@@ -45,15 +46,15 @@
             <p>Intermediate Programming</p>
           </div>
           <div class="quiz-progress-container">
-            <p>50% Completed</p>
+            <p class="score-over-total-percentage">50/50 (100%)</p>
             <div class="quiz-progress">
-              <div></div>
+              <div id="score-level"></div>
             </div>
           </div>
           <div class="quiz-time-left-container">
             <span class="material-symbols-outlined"> history </span>
             <div class="quiz-time-left">
-              <p>00:00:00</p>
+              <p class="time-limit">00:00:00</p>
               <p>Time Limit</p>
             </div>
           </div>
@@ -71,7 +72,7 @@
       </div>
 
       <!-- * QUIZ QUESTIONS CONTAINER -->
-      <div class="quiz-questions-container">
+      <div class="quiz-questions-container" id="quiz-questions-container">
         <!-- * INDIV QUIZ QUESTION -- ESSAY -->
         <!-- <div class="quiz-question">
           <div class="quiz-number-question">
@@ -81,12 +82,12 @@
               sunlight and elaborate it.
             </p>
           </div> -->
-          <!-- * QUIZ QUESTION TYPE -->
-          <!-- <p class="quiz-question-type">ESSAY</p> -->
-          <!-- * QUIZ CHOICES CONTAINER -->
-          <!-- <div class="quiz-choices-container"> -->
-            <!-- * INDIV QUIZ CHOICE AND ITS MARK DIV -->
-            <!-- <div class="quiz-answer-mark-div incorrect">
+        <!-- * QUIZ QUESTION TYPE -->
+        <!-- <p class="quiz-question-type">ESSAY</p> -->
+        <!-- * QUIZ CHOICES CONTAINER -->
+        <!-- <div class="quiz-choices-container"> -->
+        <!-- * INDIV QUIZ CHOICE AND ITS MARK DIV -->
+        <!-- <div class="quiz-answer-mark-div incorrect">
               <p class="quiz-input-answer" id="" name="">
                 Di ko alam Lorem ipsum dolor sit amet consectetur adipisicing
                 elit. Expedita esse iure distinctio, ea laboriosam minima dicta
@@ -97,107 +98,16 @@
                 labore odio praesentium, nam accusamus voluptatibus suscipit
                 autem facere beatae eligendi error quaerat?
               </p> -->
-              <!-- * IF RIGHT OR WRONG -->
-              <!-- <span class="material-symbols-outlined"> close </span>
+        <!-- * IF RIGHT OR WRONG -->
+        <!-- <span class="material-symbols-outlined"> close </span>
             </div> -->
-            <!-- * if incorrect, show this div  -->
-            <!-- <div class="correct-answer-div">
+        <!-- * if incorrect, show this div  -->
+        <!-- <div class="correct-answer-div">
               <p>Correct Answer</p>
               <p>THIS IS THE CORRECT ANSWER!</p>
             </div>
           </div>
         </div> -->
-
-        <!-- * INDIV QUIZ QUESTION -- IDENTIFICATION/FILL IN THE BLANKS -->
-        <div class="quiz-question">
-          <div class="quiz-number-question">
-            <p>Question 3</p>
-            <p>The chemical symbol for water is ___ .</p>
-          </div>
-          <!-- * QUIZ QUESTION TYPE -->
-          <p class="quiz-question-type">IDENTIFICATION</p>
-          <!-- * QUIZ CHOICES CONTAINER -->
-          <div class="quiz-choices-container">
-            <!-- * INDIV QUIZ CHOICE AND ITS MARK DIV -->
-            <div class="quiz-answer-mark-div correct">
-              <p class="quiz-input-answer" id="" name="">Ewan ko po!!!!!!!!</p>
-              <!-- * IF RIGHT OR WRONG -->
-              <span class="material-symbols-outlined"> check </span>
-            </div>
-            <!-- * if incorrect, show this div  -->
-            <div class="correct-answer-div">
-              <p>Correct Answer</p>
-              <p>THIS IS THE CORRECT ANSWER!</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- * INDIV QUIZ QUESTION -- MULTIPLE CHOICE -->
-        <div class="quiz-question">
-          <div class="quiz-number-question">
-            <p>Question 1</p>
-            <p>What is the first letter in the English Alphabet?</p>
-          </div>
-          <!-- * QUIZ QUESTION TYPE -->
-          <p class="quiz-question-type">Multiple Choice</p>
-          <!-- * QUIZ CHOICES CONTAINER -->
-          <div class="quiz-choices-container">
-            <!-- * INDIV QUIZ CHOICE -->
-            <div class="quiz-answer-mark-div">
-              <div class="quiz-select-one-choice">
-                <p>Letter A</p>
-              </div>
-            </div>
-
-            <div class="quiz-answer-mark-div">
-              <div class="quiz-select-one-choice">
-                <p>Letter Z</p>
-              </div>
-            </div>
-
-            <div class="quiz-answer-mark-div incorrect">
-              <div class="quiz-select-one-choice selected">
-                <p>Letter E</p>
-              </div>
-              <!-- * IF RIGHT OR WRONG -->
-              <span class="material-symbols-outlined"> close </span>
-            </div>
-
-            <!-- * if incorrect, show this div  -->
-            <div class="correct-answer-div">
-              <p>Correct Answer</p>
-              <p>Letter Z</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- * INDIV QUIZ QUESTION -- TRUE/FALSE -->
-        <div class="quiz-question">
-          <div class="quiz-number-question">
-            <p>Question 2</p>
-            <p>The Great Wall of China is visible from the Moon.</p>
-          </div>
-          <!-- * QUIZ QUESTION TYPE -->
-          <p class="quiz-question-type">True/False</p>
-          <!-- * QUIZ CHOICES CONTAINER -->
-          <div class="quiz-choices-container">
-            <!-- * INDIV QUIZ CHOICE -->
-
-            <div class="quiz-answer-mark-div correct">
-              <div class="quiz-select-one-choice selected correct-answer">
-                <p>True</p>
-              </div>
-              <!-- * IF RIGHT OR WRONG -->
-              <span class="material-symbols-outlined"> check </span>
-            </div>
-
-            <div class="quiz-answer-mark-div">
-              <div class="quiz-select-one-choice">
-                <p>False</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- * QUIZ ACTION BUTTONS -->
@@ -208,6 +118,22 @@
         </div>
       </div>
     </main>
+
+    <div id="toast-container">
+      <div class="toast">
+        <div class="message-div">
+          <p class="message" id="message">
+            This is the message Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Dolorum, cupiditate!
+          </p>
+        </div>
+        <div class="line"></div>
+        <div class="button-options">
+          <button class="cancel" id="cancelButton">CANCEL</button>
+          <button class="proceed" id="proceedButton">PROCEED</button>
+        </div>
+      </div>
+    </div>
 
     <script src="../scripts/studentAnswer.js" type="module"></script>
   </body>

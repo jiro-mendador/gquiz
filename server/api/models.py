@@ -64,7 +64,7 @@ class Subject(models.Model):
         return self.subject_code
       
     class Meta:
-        unique_together = ('subject_code', 'teacher', 'course')
+        unique_together = ('subject_code', 'teacher', 'course', 'description', 'year')
 
 
 class StudentCourseYearSection(models.Model):

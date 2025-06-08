@@ -1,14 +1,14 @@
 from rest_framework.response import Response
 from rest_framework import status
 from api.serializers import QuizSerializer
-from api.models import Quiz, StudentCourseYearSection, QuizSubmission
+from api.models import Quiz, StudentCourseYearSection, QuizSubmission, YearSection
 
 from rest_framework.response import Response
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.utils.timezone import now
 from datetime import timedelta
-
+import re
 
 def get(request):
     # === GET PARAMETERS ===
@@ -21,6 +21,7 @@ def get(request):
     reports = request.GET.get('reports')
     today = request.GET.get('today')
     upcoming = request.GET.get('upcoming')
+    teacher = request.GET.get('teacher')
 
     # === BASE QUERYSET WITH SELECT_RELATED FOR JOINING SUBJECT, TEACHER, COURSE ===
     quiz_qs = Quiz.objects.select_related('subject__teacher', 'subject__course').all()
@@ -41,11 +42,16 @@ def get(request):
     # === FILTER BY STUDENT'S ENROLLED COURSE (if student_id is provided) ===
     if student_id:
         try:
-            enrollment = StudentCourseYearSection.objects.select_related('course').get(student_id=student_id)
+            enrollment = StudentCourseYearSection.objects.select_related('course','year_section').get(student_id=student_id)
             student_course = enrollment.course
-
+            student_year_section = enrollment.year_section
+            
+            print("\n\n\n\n\n\n")
+            print(student_year_section.year)
+            print("\n\n\n\n\n\n")
+            
             # Filter subjects in that course
-            subject_filter = Q(subject__course=student_course)
+            subject_filter = Q(subject__course=student_course, subject__year=student_year_section.year)
 
             if subject_id:
                 subject_filter &= Q(subject_id=subject_id)
@@ -65,6 +71,9 @@ def get(request):
     elif subject_id:
         quiz_qs = quiz_qs.filter(subject=subject_id)
 
+    if teacher:
+      quiz_qs = quiz_qs.filter(subject__teacher_id=teacher)
+    
     # === SEARCH FILTER ===
     if search:
         quiz_qs = quiz_qs.filter(

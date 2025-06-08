@@ -126,7 +126,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       resetContainers();
 
       let studentQuizzes = await otherData(
-        `quiz-submission?search=${search}&student_id=${CURRENT_USER_ID}&subject=${subject}`
+        `quiz-submission?search=${search}&student=${CURRENT_USER_ID}&subject=${subject}`
       );
 
       if (studentQuizzes) {

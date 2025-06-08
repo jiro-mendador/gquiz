@@ -21,6 +21,7 @@ def get(request):
     student_id = request.GET.get('student')
     reports = request.GET.get('reports')
     subject_id = request.GET.get('subject')
+    teacher = request.GET.get('teacher')
 
     # === BASE QUERYSET ===
     qs = QuizSubmission.objects.select_related(
@@ -37,6 +38,9 @@ def get(request):
 
     if subject_id:
       qs = qs.filter(quiz__subject__id=subject_id)
+      
+    if teacher:
+      qs = qs.filter(quiz__subject__teacher__id=teacher)
     
     if search:
         qs = qs.filter(

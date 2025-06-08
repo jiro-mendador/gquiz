@@ -12,6 +12,9 @@ function onSideNavButtonsClick() {
   const navButtons = document.querySelectorAll("nav > div");
   if (navButtons) {
     navButtons.forEach((button, index) => {
+      if (userRole === "teacher" && index <= 2 && index >= 1) {
+        button.style.display = "none";
+      }
       button.addEventListener("click", (e) => sideNavClickFunction(e, index));
     });
 
@@ -28,28 +31,29 @@ function onSideNavButtonsClick() {
     }
 
     function openNavPage(index, userRole) {
-      let page = userRole === "admin" ? "admin-dashboard" : "dashboard";
+      let page = userRole === "student" ? "dashboard" : "admin-dashboard";
 
       switch (index) {
         case 0:
-          page = userRole === "admin" ? "admin-dashboard" : "dashboard";
+          page = userRole === "student" ? "dashboard" : "admin-dashboard";
           break;
         case 1:
-          page = userRole === "admin" ? "users" : "upcoming-quiz";
+          page = userRole === "student" ? "upcoming-quiz" : "users";
           break;
         case 2:
-          if (userRole !== "admin") {
+          if (userRole === "student") {
             page = "student-response-history";
             break;
           }
+        // if not student, fall through
         case 3:
-          page = userRole === "admin" ? "quizzes" : "profile";
+          page = userRole === "student" ? "profile" : "quizzes";
           break;
         case 4:
-          page = userRole === "admin" ? "submissions" : "";
+          page = userRole === "student" ? "" : "submissions";
           break;
         case 5:
-          page = userRole === "admin" ? "admin-profile" : "../profile";
+          page = userRole === "student" ? "../profile" : "admin-profile";
           break;
       }
       navigate(`./${page}.html`);
@@ -139,7 +143,7 @@ function onLogout() {
     localStorage.removeItem("gquizCurrentUserId");
     localStorage.removeItem("gquizCurrentUserRole");
 
-    navigate((currentRole === "admin" ? "../" : "./") + "index.html");
+    navigate((currentRole === "student" ? "./" : "../") + "index.html");
   });
 }
 

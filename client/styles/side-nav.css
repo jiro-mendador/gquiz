@@ -85,7 +85,7 @@ nav > div:hover:not(.selected) {
     z-index: 9997;
 
     padding: 0.5rem;
-    justify-content: center;
+    /* justify-content: center; */
     max-width: 100%;
     width: 90vw;
   }

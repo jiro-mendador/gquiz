@@ -3,7 +3,7 @@ import API from "./API.js";
 import showToast from "./toast.js";
 import { navigate, applyMainSectionMargin } from "./utils.js";
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
   // * CHECK IF THE USER IS STILL LOGGED IN
   const CURRENT_USER = localStorage.getItem("gquizCurrentUserId");
   if (CURRENT_USER !== null && CURRENT_USER !== undefined) {
@@ -66,7 +66,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const errorMessage = Object.values(ex.data.errors).flat().join(", ");
         showToast(errorMessage);
       } else {
-        showToast(ex);
+        showToast(ex.data.message);
       }
     }
   }
@@ -121,4 +121,60 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+
+  // * DOM
+  async function populateSelectElement(
+    selected = null,
+    selectId,
+    routeNameAndParams,
+  ) {
+    // * populate teacher select
+    let select = document.querySelector(`#${selectId}`);
+    select.innerHTML = "";
+
+    let data = await otherData(routeNameAndParams);
+
+    data.forEach((forData) => {
+      let option = document.createElement("option");
+      console.log(forData);
+
+      option.textContent =
+        forData?.name || `${forData?.year}${forData?.section}`;
+      option.value = forData.id;
+      console.log("OPTION: ", forData);
+
+      select.appendChild(option);
+    });
+
+    // * set it as selected
+    if (selected) {
+      select.value = selected;
+    } else {
+      select.selectedIndex = 0;
+    }
+  }
+
+  // * API CALLS
+  async function otherData(routeNameAndParams) {
+    try {
+      const response = await myAxios.get(`${API}/${routeNameAndParams}`);
+
+      console.log(response.data);
+      if (response.data.success) {
+        return response.data.data;
+      }
+    } catch (ex) {
+      console.log(ex);
+      if (ex.data?.errors) {
+        const errorMessage = Object.values(ex.data?.errors).flat().join(", ");
+        showToast(errorMessage);
+      } else {
+        showToast(ex);
+      }
+      return null;
+    }
+  }
+
+  await populateSelectElement(null, "year-section", "year-section");
+  await populateSelectElement(null, "course", "course");
 });

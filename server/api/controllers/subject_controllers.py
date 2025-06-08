@@ -15,6 +15,8 @@ def get(request):
     id = request.GET.get('id')
     reports = request.GET.get('reports')
     course = request.GET.get('course')
+    teacher = request.GET.get('teacher')
+    year = request.GET.get('year')
   
     # === BASE QUERYSET WITH JOIN ===
     subject_qs = Subject.objects.select_related('teacher').all()
@@ -22,9 +24,15 @@ def get(request):
     # === FILTER BY ID ===
     if id:
       subject_qs = subject_qs.filter(id=id)
+    
+    if teacher:
+      subject_qs = subject_qs.filter(teacher=teacher)
 
     if course:
       subject_qs = subject_qs.filter(course=course)
+    
+    if year:
+      subject_qs = subject_qs.filter(year=year)
     
     # === SEARCH FILTER ===
     if search:

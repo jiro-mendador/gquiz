@@ -13,6 +13,16 @@ window.addEventListener("DOMContentLoaded", async () => {
   // * clear localstorage item to avoid already selected page
   localStorage.removeItem("gQuizInnerSideNavPageOpened");
 
+  const CURRENT_USER_ID = localStorage.getItem("gquizCurrentUserId");
+  if (CURRENT_USER_ID === null && CURRENT_USER_ID === undefined) {
+    navigate("../index.html");
+  }
+
+  const CURRENT_USER_ROLE = localStorage.getItem("gquizCurrentUserRole");
+  if (CURRENT_USER_ROLE === null && CURRENT_USER_ROLE === undefined) {
+    navigate("../index.html");
+  }
+
   // * styles
   applyMainSectionMargin();
 
@@ -115,7 +125,11 @@ window.addEventListener("DOMContentLoaded", async () => {
     });
 
     actionButtonsDiv.appendChild(actionSpanEdit);
-    actionButtonsDiv.appendChild(actionSpanDelete);
+
+    if (id != CURRENT_USER_ID && data[4] !== "admin") {
+      actionButtonsDiv.appendChild(actionSpanDelete);
+    }
+
     tableDataDiv.appendChild(actionButtonsDiv);
 
     rowsContainer.appendChild(tableDataDiv);
@@ -348,8 +362,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
       console.log(response.data);
       let newUserId = response.data?.data?.id;
+      let prevResponse = response;
 
-      if (response.data.success) {
+      if (response.data.success && prevResponse.data.success) {
         // * after saving or updating, if it is student, also save their course year section
         response = null;
         dataToSave = null;
@@ -364,30 +379,35 @@ window.addEventListener("DOMContentLoaded", async () => {
           year_section: Number(yearSection.value),
         };
 
-        if (
-          id &&
-          courseYearSectionId !== "undefined" &&
-          courseYearSectionId !== ""
-        ) {
-          response = await myAxios.put(
-            `${API}/student-course-year-section/${courseYearSectionId}`,
-            dataToSave
-          );
+        if (role.value === "student") {
+          if (
+            id &&
+            courseYearSectionId !== "undefined" &&
+            courseYearSectionId !== ""
+          ) {
+            response = await myAxios.put(
+              `${API}/student-course-year-section/${courseYearSectionId}`,
+              dataToSave
+            );
+          } else {
+            response = await myAxios.post(
+              `${API}/student-course-year-section`,
+              dataToSave
+            );
+          }
         } else {
-          response = await myAxios.post(
-            `${API}/student-course-year-section`,
-            dataToSave
-          );
+          response = response;
         }
 
-        if (response.data.success) {
-          addUpdateForm.removeAttribute("data-id-to-update");
-          showToast(response.data.message);
+        if (response?.data?.success || prevResponse?.data?.success) {
+          showToast(response?.data?.message || prevResponse?.data?.message);
           await getAll(1, searchInput.value, "", roleFilter.value);
           resetForms();
           showAddUpdateUserDiv("none");
         }
       }
+      
+      addUpdateForm.removeAttribute("data-id-to-update");
     } catch (ex) {
       addUpdateForm.removeAttribute("data-id-to-update");
       console.log(ex);
