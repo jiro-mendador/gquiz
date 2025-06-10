@@ -80,7 +80,7 @@ def quizReports(request):
 
 # * FOR AI GENERATED QUESTIOSN!
 client = OpenAI(
-    api_key="AIzaSyBp3jJOG0rj2KI-Z3tE5F4y-U-sXov7zj8",
+    api_key="AIzaSyCm0hNs-OA4KQoxtwRQ6fJUVs7gGpOCcPs",
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 

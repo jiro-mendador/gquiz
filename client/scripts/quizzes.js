@@ -403,6 +403,9 @@ window.addEventListener("DOMContentLoaded", async () => {
         answerInputSelect.id = choices.filter(
           (choice) => choice?.is_correct
         )[0]?.id;
+        answerInputSelect.dataset.id = choices.filter(
+          (choice) => choice?.is_correct
+        )[0]?.id;
       }
     }
 
